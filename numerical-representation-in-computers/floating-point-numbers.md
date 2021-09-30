@@ -59,11 +59,11 @@ $$
 bias = 2^{k-1}-1
 $$
 
- The mantissa is encoded as `1.xxx...x` with an implied leading `1` and where `xxx...x` is encoded into the `frac` field. In this encoding, the mantissa attains maximum when `frac = 000...0` and attains a minimum when `frac = 111...1`. Normalized values are used when `exp =/= 000...0` or `exp =/= 111...1`. Notice for the mantissa, we get the leading bit `1` for free, giving one bit extra for precision.
+The mantissa is encoded as `1.xxx...x` with an implied leading `1` and where `xxx...x` is encoded into the `frac` field. In this encoding, the mantissa attains maximum when `frac = 000...0` and attains a minimum when `frac = 111...1`. Normalized values are used when `exp =/= 000...0` or `exp =/= 111...1`. Notice for the mantissa, we get the leading bit `1` for free, giving one bit extra for precision.
 
 ### Denormalized Values.
 
-We use _denormalized_ values specifically when `exp = 000...0`. In this case, we encode the mantissa as `M = 0.xxx...x`, where `frac = xxx...x`, and we encode `E` as `E = 1-bias`.  Cases for denormalized values include when both `exp = 000...0` and `frac = 000...0`, which represents `0`, or when `exp = 000...0` but `frac =/= 000...0`, in which case it is a number close to `0.0`.
+We use _denormalized_ values specifically when `exp = 000...0`. In this case, we encode the mantissa as `M = 0.xxx...x`, where `frac = xxx...x`, and we encode `E` as `E = 1-bias`. Cases for denormalized values include when both `exp = 000...0` and `frac = 000...0`, which represents `0`, or when `exp = 000...0` but `frac =/= 000...0`, in which case it is a number close to `0.0`.
 
 ### Special Values.
 

@@ -89,7 +89,7 @@ The following table shows some data representations in different architectures, 
       <td style="text-align:left"><code>32</code> bits</td>
     </tr>
     <tr>
-      <td style="text-align:left"><code>double</code> 
+      <td style="text-align:left"><code>double</code>
       </td>
       <td style="text-align:left"><code>8</code> bytes</td>
       <td style="text-align:left"><code>8</code> bytes</td>
@@ -119,23 +119,19 @@ The following table shows some data representations in different architectures, 
 
 ## Bit Level Manipulation.
 
-| And  |      |      |      | Or   |      |      |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| `&`  | `0`  | `1`  |      |   `|`| `0`  | `1`  |
-| `0`  | `0`  | `0`  |      | `0`  | `0`  | `1`  |
-| `1` | `0` | `1`    |      | `1`  | `1`  | `1`  |
+| And |  |  |  | Or |  |  |  |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| `&` | `0` | `1` |  | \` | \` | `0` | `1` |
+| `0` | `0` | `0` |  | `0` | `0` | `1` |  |
+| `1` | `0` | `1` |  | `1` | `1` | `1` |  |
 
-| Not  |      |      |      | Xor  |      |      |
+| Not |  |  |  | Xor |  |  |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| `~`  | `0`  |      |      | `^`  | `0`  | `1`  |
-| `0`  | `1`  |      |      | `0`  | `0`  | `1`  |
-| `1`  | `0`  | `1`  |      | `1`  | `1`  | `0`  |
+| `~` | `0` |  |  | `^` | `0` | `1` |
+| `0` | `1` |  |  | `0` | `0` | `1` |
+| `1` | `0` | `1` |  | `1` | `1` | `0` |
 
-The way we manipulate binary digits is with _Boolean algebra_, developed by 
-George Boole, with defines an algebra  \(not in the mathematical definition\) 
-over the finite field GF\(2\). This algebra is useful for representing the logic 
-of computers, in which `1` is encoded as `true` and `0` is `false`. The 
-following are some bitwise operations of boolean algebra.
+The way we manipulate binary digits is with _Boolean algebra_, developed by George Boole, with defines an algebra \(not in the mathematical definition\) over the finite field GF\(2\). This algebra is useful for representing the logic of computers, in which `1` is encoded as `true` and `0` is `false`. The following are some bitwise operations of boolean algebra.
 
 * The _and_ operation `&` in where `A&B=1` only when both `A=1` and `B=1` and `A&B=0` in any other case.
 * The _or_ operation `|` where `A|B=1` when either `A=1` or `B=1`, and `A|B=0` when both are `0`.
@@ -193,7 +189,7 @@ $$
 x = (x_{0}, \dots, x_{k})
 $$
 
- And an integer `w`, 
+And an integer `w`,
 
 $$
 x << w = (0, \dots, 0, x_{0}, \dots, x_{k-w-1})
@@ -225,8 +221,4 @@ Given an vecotr `x` and an integer `w`, and the arithmetic right shift `>>`, `x 
 Given a left or a right \(arithmetic or logical\) shift, and a bit vector, it is possible to completely overwrite the bit vector if an integer greater than or equal the bit length is chosen. For example, `001100 << 6 = 000000`. And `1010 >> 4 = 0000` or `1010 >> 4 = 1111` \(depending on the context\). For that reason, in `C/C++` it is good to choose an integer that is less than the size of the given data type when using a either shift operations. In certain cases, it may be that the shift operation actually shifts `k mod w` bits, \(where `w` is a given integer, and `k` is the size of the data type\), hoewever it is not consistent. In some machines, only `log_2(w)` bits of the shift ammount will actually be shifted.
 
 Another behaviour is tha `C` does not precisely define whether a right shift is logical or arithmetic, leading to portability issues.
-
-## 
-
-
 

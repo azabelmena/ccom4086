@@ -21,9 +21,9 @@ If we set, for example `int x = 0x1234567`, we can "store" it at address `100`, 
 ```bash
     addr        Machine                Assembly
 -------------------------------------------------------------------------------
-    1189:	    e8 d2 fe ff ff       	call   1060 <puts@plt>
-    118e:	    83 7d ec 03          	cmpl   $0x3,-0x14(%rbp)
-    1192:	    7e 0c                	jle    11a0 <main+0x37>
+    1189:        e8 d2 fe ff ff           call   1060 <puts@plt>
+    118e:        83 7d ec 03              cmpl   $0x3,-0x14(%rbp)
+    1192:        7e 0c                    jle    11a0 <main+0x37>
 -------------------------------------------------------------------------------
 ```
 
@@ -31,17 +31,13 @@ Which describes a little endian encoding. The machine instruction at `118e` is r
 
 ## Strings.
 
-In `C`, strings are represented by arrays of characters, that is an array of data types of type `char`.  Each character is encoded in ASCII format, and \(shoulb be\) terminated with the _null byte_ `0`, or `\0`. Byte ordering is not an issue since each character is only `1` byte.
+In `C`, strings are represented by arrays of characters, that is an array of data types of type `char`. Each character is encoded in ASCII format, and \(shoulb be\) terminated with the _null byte_ `0`, or `\0`. Byte ordering is not an issue since each character is only `1` byte.
 
-Apart from the ASCII standard, there is also the _Unicode_ standard which is used to represent a whole space of characters that ASCII cannot represent. The Unicode standard was created due to the limitations of ASCII for representing characters from other languages such as the letters `ç` or `ñ` in portuguese/french and spanish \(respectively\). Thus the Unicode standard handles consistent encoding, and representation of text in different languages and and writing systems. It can handle latin, greek, currency, and mathematical symbols, and even emojis. The Unicode encodings while have the same encodings for ASCII for the characters that come from ASCII, but also encode characters and scripts from outside of ASCII with different codes. Most characters for Unicode will require more than `8` bits to encode a  character, as with ASCII; so data types of type `char` encoded in Unicode can be well over `1` byte in length \(byte ordering will matter in this case\). This gives us the concept of a _Unicode strings_.
+Apart from the ASCII standard, there is also the _Unicode_ standard which is used to represent a whole space of characters that ASCII cannot represent. The Unicode standard was created due to the limitations of ASCII for representing characters from other languages such as the letters `ç` or `ñ` in portuguese/french and spanish \(respectively\). Thus the Unicode standard handles consistent encoding, and representation of text in different languages and and writing systems. It can handle latin, greek, currency, and mathematical symbols, and even emojis. The Unicode encodings while have the same encodings for ASCII for the characters that come from ASCII, but also encode characters and scripts from outside of ASCII with different codes. Most characters for Unicode will require more than `8` bits to encode a character, as with ASCII; so data types of type `char` encoded in Unicode can be well over `1` byte in length \(byte ordering will matter in this case\). This gives us the concept of a _Unicode strings_.
 
 ### Unicode Strings.
 
 Unicode strings are just like regular strings, except in `C`, they need conversion from a conventional ASCII string. There are two types of conventions. The `UTF-8` convention reads encoding by `8` bits, so endianness is not an issue in this case, however, strings can have more than `1` byte. Some software will require a _magic number_ to signal `utf-8` encoding, this magic number will usually by `ef bb bf`.
 
 We also have the `utf-16` encoding. In this encoding scheme, characters are read by `16` bits, so endianness matters, and the magic number for indicating `utf-16` encoding is `fe ff` \(big endian\) or `ff fe` \(little endian\). These magic numbers are also calle _Byte order Marks_ or _BOMs_ for short.
-
-
-
-
 

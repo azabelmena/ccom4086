@@ -97,7 +97,7 @@ For example, the equation:x^2 \geq 0x2≥0‌
 
 is true for floating point number, however, for `int`s, it is not, if the integers are large enough they can produce overflow leading to a negative result. Take `40000*40000 = 160000`, which is true, but `50000*50000 = -1794967296` is false. Similarly, since associativity is not true for floating point numbers,\(x+y\)+x \neq x+\(y+z\)\(x+y\)+x≠x+\(y+z\)‌
 
- And `(1e20+-1e20) = 3.140000` but `1e20+(-1e20+3.14) = 0.000000`.‌
+And `(1e20+-1e20) = 3.140000` but `1e20+(-1e20+3.14) = 0.000000`.‌
 
 ### Computer Arithmetic <a id="computer-arithmetic"></a>
 
