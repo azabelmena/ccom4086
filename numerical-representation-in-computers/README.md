@@ -11,7 +11,7 @@ description: >-
 
 ### Binary, Decimal and Hexadecimal
 
-In a computer system, numerical information is encoded in _binray digits_, or _bits_. Bits are encoded as 0 or 1; hence, one can view a computer as working over the finite field of two elements GF\(2\) \(addition and multiplication are difined a little differently\). By encoding bits in various ways, computers determine what instructions to execute and represent numbers in different bases, strings of characters, etc, and manipulate them.
+In a computer system, numerical information is encoded in _binray digits_, or _bits_. Bits are encoded as 0 or 1; hence, one can view a computer as working over the finite field of two elements $$\mathbb{F}_2$$ \(addition and multiplication are difined a little differently\). By encoding bits in various ways, computers determine what instructions to execute and represent numbers in different bases, strings of characters, etc, and manipulate them.
 
 ![Binary encoding of voltage. o is low voltage, 1 is high voltage.](../.gitbook/assets/2021-08-19_08-57.png)
 
@@ -150,7 +150,7 @@ $$
 a*b = (a_{0}*b_{0}, \dots, a_{k}*b_{k})
 $$
 
-One interesting thing to note, is that GF\(2\) forms an abelian group under `&`, and abelian group over `|`, and that `&` distributes over `|`. So `|` can be viewed as an addition over GF\(2\), and `&` as multiplication \(we also see that `|` distributes over `&`\). That is GF\(2\) forms a field over `&` and `|`. So an computer can be seen as operating over an `n` dimensional vector space over GF\(2\).
+One interesting thing to note, is that GF\(2\), $$\mathbb{F}_2$$ forms an abelian group under `&`, and abelian group over `|`, and that `&` distributes over `|`. So `|` can be viewed as an addition over GF\(2\), and `&` as multiplication \(we also see that `|` distributes over `&`\). That is GF\(2\) forms a field over `&` and `|`. So an computer can be seen as operating over an `n` dimensional vector space over GF\(2\).
 
 Let us put aside first that given the binary number represented as a vector, we make the following convention:
 
