@@ -119,19 +119,23 @@ The following table shows some data representations in different architectures, 
 
 ## Bit Level Manipulation.
 
-| And |  |  |  | Or |  |  |
+| And  |      |      |      | Or   |      |      |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| `&` | `0` | `1` |  | `|` | `0` | `1` |
-| `0` | `0` | `0` |  | `0` | `0` | `1` |
-| `1` | `0` | `1` |  | `1` | `1` | `1` |
+| `&`  | `0`  | `1`  |      |   `|`| `0`  | `1`  |
+| `0`  | `0`  | `0`  |      | `0`  | `0`  | `1`  |
+| `1` | `0` | `1`    |      | `1`  | `1`  | `1`  |
 
-| Not |  |  |  | Xor |  |  |
+| Not  |      |      |      | Xor  |      |      |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| `~` |  |  |  | `^` | `0` | `1` |
-| `0` | `1` |  |  | `0` | `0` | `1` |
-| `1` | `0` |  |  | `1` | `1` | `0` |
+| `~`  | `0`  |      |      | `^`  | `0`  | `1`  |
+| `0`  | `1`  |      |      | `0`  | `0`  | `1`  |
+| `1`  | `0`  | `1`  |      | `1`  | `1`  | `0`  |
 
-The way we manipulate binary digits is with _Boolean algebra_, developed by George Boole, with defines an algebra  \(not in the mathematical ddefinition\) over the finite field GF\(2\). This algebra is useful for representing the logic of computers, in which `1` is encoded as `true` and `0` is `false`. The following are some bitwise operations of boolean algebra.
+The way we manipulate binary digits is with _Boolean algebra_, developed by 
+George Boole, with defines an algebra  \(not in the mathematical definition\) 
+over the finite field GF\(2\). This algebra is useful for representing the logic 
+of computers, in which `1` is encoded as `true` and `0` is `false`. The 
+following are some bitwise operations of boolean algebra.
 
 * The _and_ operation `&` in where `A&B=1` only when both `A=1` and `B=1` and `A&B=0` in any other case.
 * The _or_ operation `|` where `A|B=1` when either `A=1` or `B=1`, and `A|B=0` when both are `0`.
