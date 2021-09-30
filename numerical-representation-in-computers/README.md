@@ -70,14 +70,14 @@ The following table shows some data representations in different architectures, 
       <td style="text-align:left"><code>32</code> bits</td>
     </tr>
     <tr>
-      <td style="text-align:left"><code>long</code>
+      <td style="text-align:left">~ |~<code>long</code>
       </td>
       <td style="text-align:left"><code>4</code> bytes</td>
       <td style="text-align:left"><code>8</code> bytes</td>
       <td style="text-align:left"><code>8</code> bytes</td>
       <td style="text-align:left">
         <p><code>32</code> bits</p>
-        <p>or <code>64</code> bits</p>
+        <p>or <code>64</code> bitsk</p>
       </td>
     </tr>
     <tr>
