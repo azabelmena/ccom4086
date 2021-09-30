@@ -22,8 +22,6 @@ The course meets on Tuesdays, and Thursdays from 08.30-09.50, and office hours a
 * Independent study project - 20%
   * One individual project, one group project.
 
-![](https://gblobscdn.gitbook.com/assets%2F-Mh0PyAUzZ9O2DsHDkyQ%2F-MhKglZvsoUgqmI9d4ye%2F-MhKh1uJ7Qn_Ema2n6Ev%2F2021-08-17_16-00.png?alt=media&token=6986480f-d0b7-4100-85f4-fd1bcb56f547)memory heiarchy of a computer‌
-
 ### Topics <a id="topics"></a>
 
 ‌
@@ -52,7 +50,7 @@ The goal of this course is to acquire the knowledge necessary to understand comp
 
 A computer system has many layers, which start with the transistors, to logic gates, and then to hardware. Computer architecture connects the hardware to the software, and consists of different architectures such as `x86` and `ARM`.‌‌
 
-From the intstruction set architecture down is the computer hardware, and from machine code up is the software of the computer. The middleware, or firmware OS floats between maching code, assemble and programming language, and the application layer.‌![](https://gblobscdn.gitbook.com/assets%2F-Mh0PyAUzZ9O2DsHDkyQ%2F-MhKNyClmIKaL8qduM3Q%2F-MhKO4t_nDEZVSCZ9VEI%2F2021-08-17_14-28.png?alt=media&token=85f2c68f-f19b-4de4-ad55-f35f424bb360)The hardware layout of a typical computer.![](https://gblobscdn.gitbook.com/assets%2F-Mh0PyAUzZ9O2DsHDkyQ%2F-MhKLbbfWkSzWZXa4G-Y%2F-MhKNRmDKwmFQnw_jO3K%2F2021-08-17_14-29.png?alt=media&token=3266ae9d-cc75-41aa-a633-a316c4bcbf39)The levels of the computer starting from the application layer in software and going down to the transistors in hardware.‌
+From the intstruction set architecture down is the computer hardware, and from machine code up is the software of the computer. The middleware, or firmware OS floats between maching code, assemble and programming language, and the application layer.‌The hardware layout of a typical computer.The levels of the computer starting from the application layer in software and going down to the transistors in hardware.‌
 
 The computer consists of the following layers‌‌
 
@@ -77,7 +75,7 @@ The class will consist of quizes, labs and projects \(one group and one individu
 
 ### The Abstraction of Computer Science. <a id="the-abstraction-of-computer-science"></a>
 
-![](https://gblobscdn.gitbook.com/assets%2F-Mh0PyAUzZ9O2DsHDkyQ%2F-MhKNyClmIKaL8qduM3Q%2F-MhKO1uFvLIvg4V_jvAs%2F2021-08-17_14-28_1.png?alt=media&token=7d95909b-27e2-43b9-9bae-c29bd4585728)levels of abstraction for computer architecture.‌
+levels of abstraction for computer architecture.‌
 
 Most computer science courses focus on abstraction which is useful when planning out a project and not having to worry about specific details. It should be noted that abstraction still has limits, especially when it comes to finding bugs in certain programs, optimization of said programs, and the general need to understand the underlying structures of what you're working with.‌
 

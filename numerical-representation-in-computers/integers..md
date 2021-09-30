@@ -57,7 +57,7 @@ $$
 
 Is the range of all possible unique values for two's complement encoding. We should not that unlike the range for unsigned encoding, this range is not symmetric.
 
-We can notice two things about our given ranges for these numbers. We first note that
+We can notice two things about our given ranges for these numbers. We first note that 
 
 $$
 2^w = 2 \cdot (2^{w-1}-1)+1 \\
@@ -90,7 +90,7 @@ These conversions just change the interpretation of the bit vector, which is goo
 
 ## Signed vs. Unsinged numbers in C/C++
 
-In `C/C++`, integer literals are assumed, by default to be signed. To declare an unsigned integers, simply append a `u` to the assignment; for exampl `int a = 30u` declares `a` to be the integer `30` in unsigned. You can also call integers to be unsigned or signed by casting them as such, for example `int sa = (signed int) a` takes `a` as a signed `int` and stores it in `int`. `C/C++` can also cast integers implicitly. For example, in the following code:
+In `C/C++`, integer literals are assumed, by default to be signed. To declare an unsigned integers, simply append a `u` to the assignment; for exampl `int a = 30u` declares `a` to be the integer `30` in unsigned.  You can also call integers to be unsigned or signed by casting them as such, for example `int sa = (signed int) a` takes `a` as a signed `int` and stores it in `int`.  `C/C++` can also cast integers implicitly. For example, in the following code:
 
 ```text
 int tx ,ty
@@ -110,13 +110,13 @@ The use of signed and unsigned numbers in `C/C++` isn't just only in interpretat
 
 ## Expanding and Truncating.
 
-We can also expand and truncate integers.
+ We can also expand and truncate integers.
 
 ### Zero Expansion and Sign Extension.
 
 ![](../.gitbook/assets/2021-08-20_17-06.png)
 
-Given a `w` bit bit vector `x`, we expand `x` by `k` bits by appending `k` `0`s to the most significant positions. That is if
+Given a `w` bit bit vector `x`, we expand `x` by `k` bits by appending `k` `0`s to the most significant positions. That is if 
 
 $$
 x=(x_0, \dots x_w)
@@ -150,7 +150,7 @@ $$
 x'=(x_0, \dots, x_{k-1})
 $$
 
-If we let `y = B2U(x)` and `y' = B2U(x')`, then we get
+If we let `y = B2U(x)` and `y' = B2U(x')`, then we get 
 
 $$
 x' \equiv x \mod{2^k}
@@ -196,7 +196,9 @@ Or, as `C` evaluates it: `(x+(1 << k)-1) >> k`.
 
 ### Unsigned arithmetic.
 
-For unsigned addition, we simply ignore carry bits; that is, any bits that cause the number to overflow\), and implement modular addition. Similarly, multiplication is treated in the same way, with the modular product instead.
+
+
+For unsigned addition, we simply ignore carry bits; that is, any bits that cause the number to overflow\), and  implement modular addition. Similarly, multiplication is treated in the same way, with the modular product instead.
 
 ![](../.gitbook/assets/2021-08-20_17-07.png)
 
@@ -205,6 +207,8 @@ For unsinged integers, there is really only one way for the value to overflow. T
 ### Signed arithmetic.
 
 For signed integer values, the range goes from a negative value to a postive value, hence there are two ways for addition and multiplication to overflow, the first ish where it overflows towards the upperbound, which results in a wrap around to a negative number, we call this _positive overflow_ \(since it overflows in the positive direction\). The other way for the value to over flow is towards the lower bound, in where the wrap around will occur at a positive number; this is called _negative overflow_. In either case, the arithmetic should be accounted for these two possible overflows.
+
+
 
 For signed multiplication, there are somethings to note. Particularly, the multiplication will ignore the higher order `w` bits, moreover, it seems to leave the least significant bits the same as well.
 
