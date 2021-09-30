@@ -82,9 +82,7 @@ we can run `gcc` with the following flags `-Og` \(optimization\) and `-g`
 
 ```c
 // sum.c
-long plus(long x, long y){
-    return x+y;
-}
+long plus(long x, long y);
 
 void sumstore(long x, long y, long *dest){
 
@@ -96,7 +94,7 @@ void sumstore(long x, long y, long *dest){
 ```
 
 We can also view the assembly of some code by compiling with the `gcc` flag `-S`, 
-which outputs a `.S` file.
+which outputs a `.s` file.
 
 ```c
 // Portion of sum.s compiled with gcc -Og -S sum.c
@@ -223,7 +221,8 @@ Disassembly of section .text:
 Using the command `objdump` is useful for examining object code. With it one can 
 analyze but patterns of series of instructions, and produces an approximate 
 rendition of assembly code. It can also be run on `a.out` files \(that is 
-complete binaries\) as well as `.o` object files. The following is a portion of 
+complete binaries\) as well as `.o` object files. Typically an object dump of a 
+binary file has the following format: The following is a portion of 
 an object dump performed on the `cat` command of `unix` \(`/usr/bin/cat`\):
 
 ```bash
@@ -239,3 +238,19 @@ Disassembly of section .init:
     2004:    48 83 ec 08              sub    $0x8,%rsp
     2008:    48 8b 05 19 8f 00 00     mov    0x8f19(%rip),%rax
 ```
+```
+    addr:   machine code isntr        assembly code instr.
+```
+
+The `addr` portion is where the address of the machine code. The machine code
+instructions then come after; here the first byte of the machine code piece is
+stored in the address. After comes the assembly counter part of the machine
+code.
+
+Any piece of software on a computer can be interpreted as executable code, and
+hence they can be dissassembled via an object dump. The dissassemble examines
+the bytes and reconstructs the assembly source. It is worth noting that while
+one may able to disassemble every peice of software, legal agreements and
+proprietary licences prohibit it. For example, disassembling a piece of a
+Windows `.exe` binary for reverse engineering is forbidden under the Microsoft 
+End User License Agreement.

@@ -118,7 +118,7 @@ smaller, getting into the 10ths of nanometers. [IBM has produced the world's fir
 However, Moore's law being logistic in growth, limits the size of transistors to 
 `0.2nm`s, that is the size of a silicon atom.
 
-## `x86` Clones: Advanced Micro Devices \(AMD\).
+## `x86` Clones: Advanced Micro Devices (AMD) and Intel.
 
 Advanced Micro Devices, better known as AMD is a leading competitor to Intel in 
 terms of processors. Historically, the have always followed just behind Intel, 
@@ -132,6 +132,15 @@ The innovation in `64` bit architectures rocketed AMD as a serious competitor to
 Intel. In recent years though, Intel has gotten its act together and is as of now 
 leading the world in semiconductor technology. AMD on the other hand, has fallen 
 behind; relying on external semiconductor manufacturers.
+
+Focusing now on Intel, in 2001 Intel attenmpted a radical shift from the `IA32`
+convention for architecture to `IA64`, it was a completely different
+architecture and considered `IA32` *legacy*, that is something no longer
+supported. The performance was lackluster. In 2003, AMD stepped in with the
+`x86-64` architecture, this made Intel focus more on the `IA32` architecture,
+and avoid admitting mistakes. In 2004, Intel announced the `EM64T` extension for
+their `IA32` architecture. This extension added `64` bit support and memory, and
+was a serious competitor to the `x86-64` of AMD.
 
 Since AMD and Intel processors both use the `x86` platform, they can be 
 considered the same. If one were to look at these processors at a deeper level 

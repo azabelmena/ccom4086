@@ -11,11 +11,21 @@ description: >-
 
 ### Binary, Decimal and Hexadecimal
 
-In a computer system, numerical information is encoded in _binray digits_, or _bits_. Bits are encoded as 0 or 1; hence, one can view a computer as working over the finite field of two elements $$\mathbb{F}_2$$ \(addition and multiplication are difined a little differently\). By encoding bits in various ways, computers determine what instructions to execute and represent numbers in different bases, strings of characters, etc, and manipulate them.
+In a computer system, numerical information is encoded in _binray digits_, or 
+_bits_. Bits are encoded as 0 or 1; hence, one can view a computer as working 
+over the finite field of two elements $$\mathbb{F}_2$$_ \(addition and multiplication 
+are difined a little differently\). By encoding bits in various ways, computers 
+determine what instructions to execute and represent numbers in different bases, 
+strings of characters, etc, and manipulate them.
 
 ![Binary encoding of voltage. o is low voltage, 1 is high voltage.](../.gitbook/assets/2021-08-19_08-57.png)
 
-Why do computers use bits? Bits are easy to work with. A typical computer operates with transistors turning _on_ with a HIGH voltage, and turring _off_ with a LOW voltage. This makes the values 0 and 1 natural analogs to represent LOW and HIGH, OFF and ON, or FALSE and TRUE. So bits are easy to store with bistable elements. Another reason why bits are preferred, is that they can be reliably transmitted on noisy, or faulty wires, reducing the cost of error correction.
+Why do computers use bits? Bits are easy to work with. A typical computer operates 
+with transistors turning _on_ with a HIGH voltage, and turring _off_ with a LOW 
+voltage. This makes the values 0 and 1 natural analogs to represent LOW and HIGH, 
+OFF and ON, or FALSE and TRUE. So bits are easy to store with bistable elements. 
+Another reason why bits are preferred, is that they can be reliably transmitted 
+on noisy, or faulty wires, reducing the cost of error correction.
 
 #### Example
 
@@ -23,109 +33,45 @@ Why do computers use bits? Bits are easy to work with. A typical computer operat
 * `1.20` in decimal is `1.0011001100110011[0011]...` in binary.
 * `1.55213 x 10^4` in decimal is `1.1101101101101 x 2^13` in binary.
 
-We can encode 8 bits into a _byte_ value. With this encoding, we can represent 256 different numbers. In decimal we can represent the numbers `0` to `255` and in binary `00000000` to `11111111`.
+We can encode 8 bits into a _byte_ value. With this encoding, we can represent 
+256 different numbers. In decimal we can represent the numbers `0` to `255` and 
+in binary `00000000` to `11111111`.
 
-_Hexidecimal_ is also a useful way to encode bytes. Representing one hexadecimal digit, `0-9` and `a-f`, as 4 bits, a byte is represented as any combination of two hex digits. For example, the byte `00001111` can be represented as `0x0f` in hex. Then the hexadecimal number `0xfa1d37b` is `1111101000011101001101111011` in binary and `4196218235` in decimal.
+_Hexidecimal_ is also a useful way to encode bytes. Representing one hexadecimal 
+digit, `0-9` and `a-f`, as 4 bits, a byte is represented as any combination of two 
+hex digits. For example, the byte `00001111` can be represented as `0x0f` in hex. 
+Then the hexadecimal number `0xfa1d37b` is `1111101000011101001101111011` in 
+binary and `4196218235` in decimal.
 
-Here we are assuming that the reader knows how to convert decimal to binary to hex and vice versa. It would also be useful to know or learn some algorithms for easy conversion.
+Here we are assuming that the reader knows how to convert decimal to binary to 
+hex and vice versa. It would also be useful to know or learn some algorithms 
+for easy conversion.
 
 ### Data Representation
 
-The following table shows some data representations in different architectures, and their sizes.
+The following table shows some data representations in different architectures, 
+and their sizes.
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left"><code>C</code> Data Type</th>
-      <th style="text-align:left"><code>32</code> bit</th>
-      <th style="text-align:left"><code>64</code> bit</th>
-      <th style="text-align:left"><code>x86_64</code>
-      </th>
-      <th style="text-align:left">Size</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left"><code>char</code>
-      </td>
-      <td style="text-align:left"><code>1</code> byte</td>
-      <td style="text-align:left"><code>1</code> byte</td>
-      <td style="text-align:left"><code>1</code> byte</td>
-      <td style="text-align:left"><code>8</code> bits</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>short</code>
-      </td>
-      <td style="text-align:left"><code>2</code> bytes</td>
-      <td style="text-align:left"><code>2</code> bytes</td>
-      <td style="text-align:left"><code>2</code> bytes</td>
-      <td style="text-align:left"><code>16</code> bits</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>int</code>
-      </td>
-      <td style="text-align:left"><code>4</code> bytes</td>
-      <td style="text-align:left"><code>4</code> bytes</td>
-      <td style="text-align:left"> <code>4</code> bytes</td>
-      <td style="text-align:left"><code>32</code> bits</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">~ |~<code>long</code>
-      </td>
-      <td style="text-align:left"><code>4</code> bytes</td>
-      <td style="text-align:left"><code>8</code> bytes</td>
-      <td style="text-align:left"><code>8</code> bytes</td>
-      <td style="text-align:left">
-        <p><code>32</code> bits</p>
-        <p>or <code>64</code> bitsk</p>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>float</code>
-      </td>
-      <td style="text-align:left"><code>4</code> bytes</td>
-      <td style="text-align:left"><code>4</code> bytes</td>
-      <td style="text-align:left"><code>4</code> bytes</td>
-      <td style="text-align:left"><code>32</code> bits</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>double</code> 
-      </td>
-      <td style="text-align:left"><code>8</code> bytes</td>
-      <td style="text-align:left"><code>8</code> bytes</td>
-      <td style="text-align:left"><code>8</code> bytes</td>
-      <td style="text-align:left"><code>64</code> bits</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>long double</code>
-      </td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left"><code>10</code>/<code>16</code> bytes</td>
-      <td style="text-align:left"></td>
-    </tr>
-    <tr>
-      <td style="text-align:left">pointer</td>
-      <td style="text-align:left"><code>4</code> bytes</td>
-      <td style="text-align:left"><code>8</code> bytes</td>
-      <td style="text-align:left"><code>8</code> bytes</td>
-      <td style="text-align:left">
-        <p><code>32</code> bit</p>
-        <p>vs <code>64</code> bit addressing</p>
-      </td>
-    </tr>
-  </tbody>
-</table>
+|`C` data type   |   `32` bit   |   `64` bit   |   `x86_64`     |   Size          |
+|:---            |    :---:     |    :---:     |    :---:       |             ---:|
+|`char`          |   `1` byte   |   `1` byte   |   `1` byte     |   `8` bits      |
+|`short`         |   `2` bytes  |   `2` bytes  |   `2` bytes    |  `16` bits      |
+|`int`           |   `4` bytes  |   `4` bytes  |   `4` bytes    |  `32` bits      |
+|`long`          |   `4` bytes  |   `8` bytes  |   `8` bytes    |`32`/`64` bits   |
+|`float`         |   `4` bytes  |   `4` bytes  |   `4` bytes    |     `32` bits   |
+|`double`        |   `8` bytes  |   `8` bytes  |   `8` bytes    |     `64` bits   |
+|`long double`   |              |              |`10`/`16` bytes |                 |
+|`pointer`       |   `4` bytes  |   `8` bytes  |   `8` bytes    |`32`/`64` bits   |
 
 ## Bit Level Manipulation.
 
-| And  |      |      |      | Or   |      |      |
+| AND  |      |      |      | OR   |      |      |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | `&`  | `0`  | `1`  |      |   `|`| `0`  | `1`  |
 | `0`  | `0`  | `0`  |      | `0`  | `0`  | `1`  |
-| `1` | `0` | `1`    |      | `1`  | `1`  | `1`  |
+| `1`  | `0`  | `1`  |      | `1`  | `1`  | `1`  |
 
-| Not  |      |      |      | Xor  |      |      |
+| NOT  |      |      |      | XOR  |      |      |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | `~`  | `0`  |      |      | `^`  | `0`  | `1`  |
 | `0`  | `1`  |      |      | `0`  | `0`  | `1`  |
@@ -133,14 +79,18 @@ The following table shows some data representations in different architectures, 
 
 The way we manipulate binary digits is with _Boolean algebra_, developed by 
 George Boole, with defines an algebra  \(not in the mathematical definition\) 
-over the finite field GF\(2\). This algebra is useful for representing the logic 
-of computers, in which `1` is encoded as `true` and `0` is `false`. The 
+over the finite field $$\mathbb{F}_2$$. This algebra is useful for representing 
+the logic of computers, in which `1` is encoded as `true` and `0` is `false`. The 
 following are some bitwise operations of boolean algebra.
 
-* The _and_ operation `&` in where `A&B=1` only when both `A=1` and `B=1` and `A&B=0` in any other case.
-* The _or_ operation `|` where `A|B=1` when either `A=1` or `B=1`, and `A|B=0` when both are `0`.
-* The _not_ \(or _negation_\) operation `~` where `~A=1` when `A=0` and `A=0` when `A=1`.
-* The _exclusive or_ \(_xor_\) operation `^`, where `A^B=1` when either `A=1` or `B=1` \(but not both\), and `A^B=0` in any other case.
+* The _and_ operation `&` in where `A&B=1` only when both `A=1` and `B=1` and 
+`A&B=0` in any other case.
+* The _or_ operation `|` where `A|B=1` when either `A=1` or `B=1`, and `A|B=0` 
+when both are `0`.
+* The _not_ \(or _negation_\) operation `~` where `~A=1` when `A=0` and `A=0` 
+when `A=1`.
+* The _exclusive or_ \(_xor_\) operation `^`, where `A^B=1` when either `A=1` 
+or `B=1` \(but not both\), and `A^B=0` in any other case.
 
 These operations are applied bit wise, that is if:
 
@@ -148,25 +98,35 @@ $$
 a=(a_{0}, \dots, a_{k}) \text{ and } b=(b_{0}, \dots, b_{k})
 $$
 
-Are `k` bit binary numbers, and if $$*$$ is a bitwise operation \(not necesarily those of above, then:
+Are `k` bit binary numbers, and if $$*$$ is a bitwise operation \(not necesarily 
+those of above, then:
 
 $$
 a*b = (a_{0}*b_{0}, \dots, a_{k}*b_{k})
 $$
 
-One interesting thing to note, is that GF\(2\), $$\mathbb{F}_2$$ forms an abelian group under `&`, and abelian group over `|`, and that `&` distributes over `|`. So `|` can be viewed as an addition over GF\(2\), and `&` as multiplication \(we also see that `|` distributes over `&`\). That is GF\(2\) forms a field over `&` and `|`. So an computer can be seen as operating over an `n` dimensional vector space over GF\(2\).
+One interesting thing to note, is that, $$\mathbb{F}_2$$ forms an abelian group 
+under `&`, and abelian group over `|`, and that `&` distributes over `|`. So 
+`|` can be viewed as an addition over GF\(2\), and `&` as multiplication \(we 
+also see that `|` distributes over `&`\). That is GF\(2\) forms a field over `&` 
+and `|`. So an computer can be seen as operating over an `n` dimensional vector 
+space over $$\mathbb{F}_2$$.
 
-Let us put aside first that given the binary number represented as a vector, we make the following convention:
+Let us put aside first that given the binary number represented as a vector, 
+we make the following convention:
 
 $$
 (a_0, \dots a_{k}) \equiv a_k \cdot 2^k+\dots+a_{0} \cdot 2^0
 $$
 
-\(That is we represent binary numbers mathematically in little-endian fashion, more on that later\).
+\(That is we represent binary numbers mathematically in little-endian fashion, 
+more on that later\).
 
 ### Bit Level Operations in C.
 
-In `C/C++`, bit level operations operate on any integal data types \(`char`, `short`, `int`, `long`, and `unsigned`\). And, as described above, they view their arguments as bit vectors, and are applied bitwise.
+In `C/C++`, bit level operations operate on any integal data types \(`char`, `
+short`, `int`, `long`, and `unsigned`\). And, as described above, they view 
+their arguments as bit vectors, and are applied bitwise.
 
 #### Example.
 
@@ -179,21 +139,23 @@ In `C/C++`, bit level operations operate on any integal data types \(`char`, `sh
 * `0x69 | 0x55 = 0x7d`.
   * `01101001 | 01010101 = 01111101`.
 
-In contrast to the logical operatiors of `C/C++` \(`&&`, `||`, and `!`\), which view `0` as `false` and any nonzero value as `true`, they will always return `0` or `1`, and terminate as early as possible. For example for `int a = 0`, `a && p/a` will return `0`, moreover it will terminate as soon as it evaluates `a`, and will never evaluate `p/a` which is a division by `0`.
+In contrast to the logical operatiors of `C/C++` \(`&&`, `||`, and `!`\), which 
+view `0` as `false` and any nonzero value as `true`, they will always return `0` 
+or `1`, and terminate as early as possible. For example for `int a = 0`, `a && 
+p/a` will return `0`, moreover it will terminate as soon as it evaluates `a`, 
+and will never evaluate `p/a` which is a division by `0`.
 
 ### Shift Operations.
 
-There are additional bit operations called _shift operations_. There is a _left shift_ denoted by `<<` and a _right shift_ denoted by `>>`.
+There are additional bit operations called _shift operations_. There is a _left 
+shift_ denoted by `<<` and a _right shift_ denoted by `>>`.
 
 #### Left Shifts
 
-We define the left shift operation as follows. Given a bit vector
+We define the left shift operation as follows. Given a bit vector $$x = (x_{0}, 
+\dots, x_{k})$$
 
-$$
-x = (x_{0}, \dots, x_{k})
-$$
-
- And an integer `w`, 
+ And an integer $$w$$,
 
 $$
 x << w = (0, \dots, 0, x_{0}, \dots, x_{k-w-1})

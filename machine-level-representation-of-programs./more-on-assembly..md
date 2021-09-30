@@ -141,10 +141,11 @@ Dump of assembler code for function main:
    0x0000000000001152 <+25>:    ret
 ```
 
-Operations in assembly can be _unaray_, taking one argument, such as the above 
+Operations in assembly can be _unary_, taking one argument, such as the above 
 instruction `push %rbp`, or they could be _binary_ taking two arguments, such as 
-`mov %rsp, %rbp`. Operations in assembly are usually intuitive mnemonics, for 
-example `mov` moves the data from one register into the other \(overwriting the 
+`mov %rsp, %rbp`; the can also take no arguments, such as a `ret` instruction,
+which signifies a return. Operations in assembly are usually intuitive mnemonics, 
+for example `mov` moves the data from one register into the other \(overwriting the 
 previous data in the process\), and `push` pushes the value of a register onto a 
 stack. Operations beginning with a `j` usually denote a _jump_ from one 
 instruction to another; for example `jle` stands for "jump if less than or 
