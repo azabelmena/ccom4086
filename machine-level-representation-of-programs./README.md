@@ -82,6 +82,8 @@ they could be used to fry an egg. One solution that eases the problem is to
 "split" the processor into multiple chips called _cores_ which can work 
 independently of each other.
 
+![The Layout of a typical multicore processor.](../Figures/Chapter3/integratedMemoryController.png)
+
 Notice that the `Core 2` and `i7` processors decreased in frequency. This is due 
 to being multicore processors. Now we can find processors with up to `8` cores. 
 There is also the question of how processors are _etched_, that is how they are 

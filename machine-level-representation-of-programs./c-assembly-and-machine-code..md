@@ -25,6 +25,8 @@ lesser extent.
 
 ## Assembly/Machine Code View of a Processor.
 
+![The Layout of a typical multicore processor.](../Figures/Chapter3/cpu.png)
+
 Since we do not have to worry about the processor at the mircoarchitecture level, 
 we can view the processor the way typical machine or assembly code would.
 
@@ -38,6 +40,8 @@ contains _condition codes_, which store the status information about arithmetic
 and logical operations, and is also used for conditional branching \(`if`, `else`
 statements\). The CPU also contains the _arithmetic logic unit_ \(ALU\) which is 
 in charge of handling arithmetic and logical operations.
+
+
 
 The other component of a processor is the _memory_. Here, bytes are stored in 
 _addresses_ as an addressable array. This array stores code and user data, a 
@@ -73,6 +77,8 @@ we can run `gcc` with the following flags `-Og` \(optimization\) and `-g`
 ```bash
 ~/ccom4086/ > gcc -Og -g -o p p1.c p2.c
 ```
+
+![](../Figures/Chapter3/assemblyAndLinkage.png)
 
 ```c
 // sum.c
