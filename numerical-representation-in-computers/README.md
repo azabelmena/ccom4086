@@ -153,21 +153,23 @@ shift_ denoted by `<<` and a _right shift_ denoted by `>>`.
 #### Left Shifts
 
 We define the left shift operation as follows. Given a bit vector $$x = (x_{0}, 
-\dots, x_{k})$$
-
- And an integer $$w$$,
+\dots, x_{k})$$ and an integer $$w$$,
 
 $$
 x << w = (0, \dots, 0, x_{0}, \dots, x_{k-w-1})
 $$
 
-That is the left shift shifts `x` `w` bits to the left and ovewrites the least signififcant bits with `0`.
+That is the left shift shifts `x` `w` bits to the left and ovewrites the least
+signififcant bits with `0`.
 
 #### Right Shifts.
 
-There are two different definitions for what a right shift is. There is a _logical_ right shift and an _arithmetic_ right shift.
+There are two different definitions for what a right shift is. There is a
+_logical_ right shift and an _arithmetic_ right shift.
 
-Given a bit vector `x` and an integer `w`, and the logical right shift `>>`, `x >> w` shifts the bits of `x` `w` bits to the right and overwrites the remaining bits with `0`.
+Given a bit vector $$x$$ and an integer $$y$$, and the logical right shift
+`>>`, $$x >> w$$ shifts the bits of $$x$$ $$w$$ bits to the right and overwrites
+the remaining bits with `0`.
 
 #### Example.
 
@@ -175,7 +177,8 @@ Given a bit vector `x` and an integer `w`, and the logical right shift `>>`, `x 
   * `00000001 << 4 = 00010000`.
   * `1 << 4 = 16`.
 
-Given an vecotr `x` and an integer `w`, and the arithmetic right shift `>>`, `x >> w` overwrites the left most `w` bits by the most significant bit of `x`.
+Given an vector $$x$$ and an integer $$w$$, and the arithmetic right shift `>>`, $$x 
+>> w$$ overwrites the left most $$w$$ bits by the most significant bit of $$x$$.
 
 #### Example
 
@@ -184,11 +187,16 @@ Given an vecotr `x` and an integer `w`, and the arithmetic right shift `>>`, `x 
 
 ### Shift implementations in C/C++.
 
-Given a left or a right \(arithmetic or logical\) shift, and a bit vector, it is possible to completely overwrite the bit vector if an integer greater than or equal the bit length is chosen. For example, `001100 << 6 = 000000`. And `1010 >> 4 = 0000` or `1010 >> 4 = 1111` \(depending on the context\). For that reason, in `C/C++` it is good to choose an integer that is less than the size of the given data type when using a either shift operations. In certain cases, it may be that the shift operation actually shifts `k mod w` bits, \(where `w` is a given integer, and `k` is the size of the data type\), hoewever it is not consistent. In some machines, only `log_2(w)` bits of the shift ammount will actually be shifted.
+Given a left or a right \(arithmetic or logical\) shift, and a bit vector, it is 
+possible to completely overwrite the bit vector if an integer greater than or 
+equal the bit length is chosen. For example, `001100 << 6 = 000000`. And `1010 >> 
+4 = 0000` or `1010 >> 4 = 1111` \(depending on the context\). For that reason, in 
+`C/C++` it is good to choose an integer that is less than the size of the given 
+data type when using a either shift operations. In certain cases, it may be that 
+the shift operation actually shifts $$k mod w$$ bits, \(where $$w$$ is a given 
+integer, and $$k$$ is the size of the data type\), hoewever it is not consistent. 
+In some machines, only $$log_2(w)$$ bits of the shift ammount will actually be 
+shifted.
 
-Another behaviour is tha `C` does not precisely define whether a right shift is logical or arithmetic, leading to portability issues.
-
-## 
-
-
-
+Another behaviour is tha `C` does not precisely define whether a right shift is 
+logical or arithmetic, leading to portability issues.
