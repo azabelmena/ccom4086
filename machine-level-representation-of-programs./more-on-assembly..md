@@ -271,24 +271,24 @@ Now we are done with the code, so the final product is the following assembly pr
 
 ```c
 ; helloWorld.asm
-; A helloWorld program written in 64 bit assembly.
+; A helloWorld program in 64 bit assembly.
 
-section .data           ; Set up the data section.
-   msg:     db      "Hello, world!", 10
+section .data
+    msg:    db      "Hello , world!", 10
 
-section .text           ; set up the text section.
-    global _start       ; declare our "main" procedure.
+section .text
+    global _start
 
-_start:                 ; the main procedure.
-    mov     rax,    1   ; move 1 into rax to set up SYS_write().
-    mov     rdi,    1   ; move 1 into the write arg 1 to specify stdout.
-    mov     rsi,    msg ; move our string into write arg 2.
-    mov     rdx,    14  ; move the length of our string in write arg 3.
+_start:
+    mov     rax,    1   ;  set up SYS_write().
+    mov     rdi,    1   ; wrtie to stdout in write arg 1.
+    mov     rsi,    msg ; write our sting in write arg 2.
+    mov     rdx,    14  ; write string length in write arg 3.
     syscall             ; call SYS_write().
 
-    mov     rax, 60     ; move 60 into rax to set up SYS_exit().
-    mov     rdi, 0      ; move exit code 0 to specify success.
-    syscall             ; call SYS_exit().
+    mov     rax,    60  ; setup SYS_exit().
+    mov     rdi,    0   ; Exit status 0 for success.
+    syscall             ; call SYS_exit()
 ```
 
 We should specify that everything that comes after `;` is interpreted as a comment by `nasm`. Now we wish to compile this code into a program. We do this with `nasm`, using the `-f` flag to specify the architecture, `-o` to specify the output file, and our assembly program.
@@ -312,24 +312,25 @@ We have just created and run our first assembly program.
 The assembly program we just created was created for `64` bit architectures; specifically, for `x86_64`. If one wanted to create `helloWorld.asm` for `32`, one would have to rewrite the program to accommodate `32` bit registers and calling convention. For example we can no longer use `rdi`, `rsi`, and `rdx` to set up the arguments for `write()`. Instead `32` bit calling convention reserves `ebx`, `ecx` and `edx` for the first three arguments of any given syscalls. Similarly, syscalls cannot be called with `syscall`, but are instead called with the `int` instruction, which stands for _interrupt_, `int` sends an interrupt to the operating systems kernel to execute a process. In this case, `int 0x80` is the interrupt for calling syscalls. Rewriting `helloWorld.asm`, the program would look like:
 
 ```c
+; helloWorld32.asm
+; A helloWorld program written in 32 bit assembly.
+
 section .data
-    messege:            db      "Hello, world!", 0xA
-    messege_length:     equ     $-messege
+    msg:    db      "Hello, world!", 0xa
 
 section .text
-global _start
+    global _start
 
 _start:
-    mov                 eax,    0x4
+    mov     eax,    0x4     ; Set up SYS_write().
+    mov     ebx,    0x1     ; Write to stdout in write arg 1.
+    mov     ecx,    msg     ; Put the string in write arg 2.
+    mov     edx,    0x14    ; Put string length in write arg 3.
+    int     0x80            ; call SYS_write().
 
-    mov                 ebx,    0x1
-    mov                 ecx,    messege
-    mov                 edx,    messege_length
-    int                 0x80
-
-    mov                 eax,    0x1
-    mov                 ebx,    0x0
-    int                 0x80
+    mov     eax,    0x1     ; Set up SYS_exit().
+    mov     ebx,    0x0     ; Exit code 0, success.
+    int     0x80            ; Cal SYS_exit().
 ```
 
 Similarly, to get `nasm` to compile for `32` bit, it has to be run with the `elf_32` flag. To get `ld` to link it, we must also specify `32` bit architecture with the `-m` flag.
