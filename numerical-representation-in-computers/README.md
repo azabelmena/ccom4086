@@ -11,9 +11,9 @@ description: >-
 
 ### Binary, Decimal and Hexadecimal
 
-In a computer system, numerical information is encoded in _binray digits_, or 
-_bits_. Bits are encoded as 0 or 1; hence, one can view a computer as working 
-over the finite field of two elements $$\mathbb{F}_2$$_ \(addition and multiplication 
+In a computer system, numerical information is encoded in **binray digits**, or 
+**bits**. Bits are encoded as 0 or 1; hence, one can view a computer as working 
+over the finite field of two elements $$\mathbb{F}_2$$ \(addition and multiplication 
 are difined a little differently\). By encoding bits in various ways, computers 
 determine what instructions to execute and represent numbers in different bases, 
 strings of characters, etc, and manipulate them.
@@ -31,14 +31,15 @@ on noisy, or faulty wires, reducing the cost of error correction.
 
 * `15213` in decimal is `11101101101101` in binary.
 * `1.20` in decimal is `1.0011001100110011[0011]...` in binary.
-* `1.55213 x 10^4` in decimal is `1.1101101101101 x 2^13` in binary.
+* `1.55213e4` in decimal is `1.1101101101101e13` in binary.
 
 We can encode 8 bits into a _byte_ value. With this encoding, we can represent 
 256 different numbers. In decimal we can represent the numbers `0` to `255` and 
 in binary `00000000` to `11111111`.
 
-_Hexidecimal_ is also a useful way to encode bytes. Representing one hexadecimal 
-digit, `0-9` and `a-f`, as 4 bits, a byte is represented as any combination of two 
+Hexidecimal is also a useful way to encode bytes. _Hexadecimal_ is jsut the
+integers $$\mod{16}$$ encoded in a special way. We represent one hexadecimal 
+digit by, `0-9` and `a-f`, as 4 bits, a byte is represented as any combination of two 
 hex digits. For example, the byte `00001111` can be represented as `0x0f` in hex. 
 Then the hexadecimal number `0xfa1d37b` is `1111101000011101001101111011` in 
 binary and `4196218235` in decimal.
@@ -67,7 +68,7 @@ and their sizes.
 
 | AND  |      |      |      | OR   |      |      |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| `&`  | `0`  | `1`  |      |   `|`| `0`  | `1`  |
+| `&`  | `0`  | `1`  |      | `|`  | `0`  | `1`  |
 | `0`  | `0`  | `0`  |      | `0`  | `0`  | `1`  |
 | `1`  | `0`  | `1`  |      | `1`  | `1`  | `1`  |
 
@@ -75,21 +76,21 @@ and their sizes.
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | `~`  | `0`  |      |      | `^`  | `0`  | `1`  |
 | `0`  | `1`  |      |      | `0`  | `0`  | `1`  |
-| `1`  | `0`  | `1`  |      | `1`  | `1`  | `0`  |
+| `1`  | `0`  |      |      | `1`  | `1`  | `0`  |
 
 The way we manipulate binary digits is with _Boolean algebra_, developed by 
-George Boole, with defines an algebra  \(not in the mathematical definition\) 
-over the finite field $$\mathbb{F}_2$$. This algebra is useful for representing 
-the logic of computers, in which `1` is encoded as `true` and `0` is `false`. The 
-following are some bitwise operations of boolean algebra.
+George Boole, which defines algebra over the finite field $$\mathbb{F}_2$$. 
+This algebra is useful for representing the logic of computers, in which `1` is 
+encoded as `true` and `0` is `false`. The following are some bitwise operations 
+of boolean algebra.
 
-* The _and_ operation `&` in where `A&B=1` only when both `A=1` and `B=1` and 
+* The _AND_ operation `&` in where `A&B=1` only when both `A=1` and `B=1` and 
 `A&B=0` in any other case.
-* The _or_ operation `|` where `A|B=1` when either `A=1` or `B=1`, and `A|B=0` 
+* The _OR_ operation `|` where `A|B=1` when either `A=1` or `B=1`, and `A|B=0` 
 when both are `0`.
-* The _not_ \(or _negation_\) operation `~` where `~A=1` when `A=0` and `A=0` 
+* The _NOT_ \(or _negation_\) operation `~` where `~A=1` when `A=0` and `A=0` 
 when `A=1`.
-* The _exclusive or_ \(_xor_\) operation `^`, where `A^B=1` when either `A=1` 
+* The _exclusive OR_ \(_XOR_\) operation `^`, where `A^B=1` when either `A=1` 
 or `B=1` \(but not both\), and `A^B=0` in any other case.
 
 These operations are applied bit wise, that is if:
@@ -107,10 +108,10 @@ $$
 
 One interesting thing to note, is that, $$\mathbb{F}_2$$ forms an abelian group 
 under `&`, and abelian group over `|`, and that `&` distributes over `|`. So 
-`|` can be viewed as an addition over GF\(2\), and `&` as multiplication \(we 
-also see that `|` distributes over `&`\). That is GF\(2\) forms a field over `&` 
-and `|`. So an computer can be seen as operating over an `n` dimensional vector 
-space over $$\mathbb{F}_2$$.
+`|` can be viewed as an addition over $$\mathbb{F}_2$$, and `&` as multiplication 
+\(we  also see that `|` distributes over `&`\). That is $$\mathbb{F}_2$$ forms a 
+field over `&` and `|`. So an computer can be seen as operating over an $$n$$ 
+dimensional vector space over $$\mathbb{F}_2$$.
 
 Let us put aside first that given the binary number represented as a vector, 
 we make the following convention:
@@ -159,7 +160,7 @@ $$
 x << w = (0, \dots, 0, x_{0}, \dots, x_{k-w-1})
 $$
 
-That is the left shift shifts `x` `w` bits to the left and ovewrites the least
+That is the left shift shifts $$x$$ $$w$$ bits to the left and ovewrites the least
 signififcant bits with `0`.
 
 #### Right Shifts.
@@ -177,8 +178,9 @@ the remaining bits with `0`.
   * `00000001 << 4 = 00010000`.
   * `1 << 4 = 16`.
 
-Given an vector $$x$$ and an integer $$w$$, and the arithmetic right shift `>>`, $$x 
->> w$$ overwrites the left most $$w$$ bits by the most significant bit of $$x$$.
+Given an vector $$x$$ and an integer $$w$$, and the arithmetic right shift `>>`, $$x >> 
+w$$ overwrites the left most $$w$$ bits by the most significant bit of $$x$$.
+
 
 #### Example
 
@@ -193,7 +195,7 @@ equal the bit length is chosen. For example, `001100 << 6 = 000000`. And `1010 >
 4 = 0000` or `1010 >> 4 = 1111` \(depending on the context\). For that reason, in 
 `C/C++` it is good to choose an integer that is less than the size of the given 
 data type when using a either shift operations. In certain cases, it may be that 
-the shift operation actually shifts $$k mod w$$ bits, \(where $$w$$ is a given 
+the shift operation actually shifts $$k \mod{w}$$ bits, \(where $$w$$ is a given 
 integer, and $$k$$ is the size of the data type\), hoewever it is not consistent. 
 In some machines, only $$log_2(w)$$ bits of the shift ammount will actually be 
 shifted.

@@ -9,10 +9,11 @@ description: >-
 
 ## Encoding of integers.
 
-Machines represent integers in two ways. The first is `unsigned`, in which the 
-machine reads the bits as is and assigns them a nonnegative integer value. 
-Machines can also represent `signed` integers, in where the bits have been 
-encoded to account for negative values as well.
+Machines represent integers in two ways. The first is **unsigned** (denoted
+`unsigned` in `C`), in which the machine reads the bits as is and assigns 
+them a nonnegative integer value. Machines can also represent **signed** integers 
+(deonoted `signed` in `C`), in where the bits have been  encoded to account for 
+negative values as well.
 
 Below are the encoding schemes for encoding unsigned integers represented by the 
 mapping $$B2U$$, and encoding signed integers using two's complement, represented 
@@ -26,14 +27,14 @@ $$
 B2T: x  \rightarrow -x_{w-1}2^{w-1}+\sum_{i=1}^{w-2}{x_i2^i}
 $$
 
-In $$B2T$$, we call the most significant bit the `sign` bit, and represents a 
+In $$B2T$$, we call the most significant bit the **sign** bit, and represents a 
 negative if it is `1` and a positive if it is `0`.
 
 ### Unsigned Integers.
 
 Recall that machines encode these bits onto a finite range of values. For 
 unsigned integers, the maximum possible unique value that can be represented is 
-where the bit vector `x` consists of all `1`s, in which case the we get
+where the bit vector $$x$$ consists of all `1`s, in which case the we get
 
 $$
 B2U(x)=\sum{2^i}=2^{w}-1
@@ -53,7 +54,7 @@ We call the minumum and maximum values of unsigned integers $$UMIN$$ and
 
 The ranges are different for signed integers encoded in two's complement. Since 
 the most significant bit is the sign bit, we have the smallest possible value is 
-given by the bitv vector `x=(0, ...,0, 1)`, and the greatest possible value
+given by the bit vector $$x=(0, ...,0, 1)$$, and the greatest possible value
 is $$x=(1, ..., 1, 0)$$. In the case for the these two bit vectors, we get the 
 minimum and maximum possible unique representation of $$x$$.
 
@@ -80,7 +81,7 @@ $$
 |-2^{w-1}| = (2^{w-1})+1
 $$
 
-So $$UMAX = 2*TMAX+1$$ and $$|TMIN|=TMAX+1$$. The latter also indicates an 
+So $$UMAX = 2TMAX+1$$ and $$|TMIN|=TMAX+1$$. The latter also indicates an 
 asymmetric range for signed integers encoded with two's complement. It is 
 important that integers encoded with these two schemes are only unique for 
 their assigned ranges. It is also worth noting that the two mappings $$B2U$$ and $$B2T$$
@@ -101,9 +102,9 @@ bijective, and the existence of their inverses allows us great flexibility with
 bit representations of integers. In particular, we can convert unsigned integers 
 to signed and back. Such a conversion does not preserve the value of the given 
 integer, but it does preserve the bit ordering of the given integer. We convert 
-a given integer $$x$$, with bit vector $$(x0, ..., x_w)RR using the 
-mappings $$B2U$$ and $$B2T$$ and their inverses. In particualr, define 
-maps $$U2T$$ by taking:
+a given integer $$x$$, with bit vector $$x=(x_0, \dots, x_w)$$ using the
+mappings $$B2U$$ and $$B2T$$, and their inverses defines maps $$U2T$$ and $$T2U$$ 
+by taking:
 
 $$
 U2T: x \rightarrow B2T(U2B(x)) \\
@@ -157,7 +158,18 @@ These evaluations extend to comparisons, and can produce some unintuitive
 results, however these can be explained as signed integers have different 
 values when converted to unsigned and vice versa.
 
-![](../.gitbook/assets/2021-08-25_21-51.png)
+
+|   Constant 1  |   Relation    |   Constant 2              |   Evaluation         |
+|:---           |   :---:       |   :---:                   |                  ---:| 
+|`0`            |   `==`        |   `0u`                    |   `unsigned`         | 
+|`-1`           |   `<`         |   `0`                     |     `signed`         |
+|`-1`           |   `>`         |   `0u`                    |   `unsigned`         |
+|`2147483647`   |   `>`         |   `-2147483647-1`         |     `signed`         |
+|`2147483647u`  |   `<`         |   `-2147483647-1`         |   `unsigned`         |
+|`-1`           |   `>`         |   `-2`                    |     `signed`         |
+|`-1u`          |   `>`         |   `-2`                    |   `unsigned`         |
+|`2147483647`   |   `>`         |   `2147483647u`           |   `unsigned`         |
+|`2147483647`   |   `<`         |   `(int) 2147483647u`     |   `signed`(overflow) |
 
 ## Expanding and Truncating.
 
@@ -167,8 +179,8 @@ We can also expand and truncate integers.
 
 ![](../.gitbook/assets/2021-08-20_17-06.png)
 
-Given a `w` bit bit vector `x`, we expand `x` by `k` bits by appending `k` `0`s 
-to the most significant positions. That is if 
+Given a $$w$$ bit bit vector $$x$$, we expand $$x$$ by $$k$$ bits by appending $$k$$ 
+`0`s to the most significant positions. That is if 
 
 $$
 x=(x_0, \dots x_w)
@@ -181,10 +193,10 @@ x'=(x_0, \dots, x_w, \dots, x_{w+k}) \text{ where } x_i=0 \text{ for } w < i \le
 $$
 
 This kind of expansion works best for `unsigned int`s and expands the bit vector 
-to be a `w+k` bit integer, without changing the value.
+to be a $$w+k$$ bit integer, without changing the value.
 
 We can also perform a sign extension when dealing with `signed int`s, in where 
-we append the sign bit `k` times to the most significant bit. The procedure is 
+we append the sign bit $$k$$ times to the most significant bit. The procedure is 
 the same as above, exepct instead of zeros, we append the sign bit \(the most 
 significant bit\), which is either `1` or `0`.
 
@@ -195,27 +207,18 @@ type, say, a `32` bit `int`, to a larger data type, such as a `64` bit `int`.
 
 ### Truncation.
 
-Given a bit vector
+Given a bit vector $$x=(x_0, \dots, x_w)$$ We can _truncate_ it by dropping the 
+most significant `w-k` bits in the vector. More formally, given the a bit vector $$x$$ 
+\( as descibed above\). Truncating $$x$$ to $$k$$ bits gives a bit vector of 
+length $$w-k$$ of the form: $$x'=(x_0, \dots, x_{k-1})$$
 
-$$
-x=(x_0, \dots, x_w)
-$$
-
-We can _truncate_ it by dropping the most significant `w-k` bits in the vector. 
-More formally, given the a bit vector `x` \( as descibed above\). Truncating `x` 
-to `k` bits gives a bit vector of length `w-k` of the form:
-
-$$
-x'=(x_0, \dots, x_{k-1})
-$$
-
-If we let `y = B2U(x)` and `y' = B2U(x')`, then we get 
+If we let $$y = B2U(x)$$ and $$y' = B2U(x')$$, then we get 
 
 $$
 x' \equiv x \mod{2^k}
 $$
 
-If `y = B2T(x)` and `y' = B2T(x')`, then
+If $$y = B2T(x)$$ and $$y' = B2T(x')$$, then
 
 $$
 x' = U2T(x \mod{2})
@@ -224,20 +227,20 @@ $$
 This method works for both signed and unsigned values; however, unlike expansion,
 truncating changes the value of the integer. That makes sense, as we are dropping
 information from the bit vector. For `unsigned int`s, the result is equivalent 
-to taking the integer mod `2^k`. For `signed ints`s, it is similar.
+to taking the integer mod $$2^k$$. For `signed ints`s, it is similar.
 
 ## Arithmetic.
 
 Given that there are ranges for signed and unsigned integers, operations such as 
 addition and multiplication, and shifting can produce unexepected values. For 
-example, we may add two `w` bit integers and get a `w+1` bit integer \(try adding 
+example, we may add two $$w$$ bit integers and get a $$w+1$$ bit integer \(try adding 
 `1111` to itself\), this produces something called _overflow_, in where the value 
 wraps around the range. This gives the arithmetic upon these kinds of numbers a 
 modular nature.
 
-Similarly, the multiplication of `2` `w` bit numbers can result in a `2w` bit 
-number \(multipy the previous example by itself\). This goes for both signed and 
-unsigned integers.
+Similarly, the multiplication of $$2$$ $$w$$ bit numbers can result in a $$2w$$ 
+bit number \(multipy the previous example by itself\). This goes for both signed 
+and unsigned integers.
 
 ### Shift operations.
 
@@ -250,7 +253,7 @@ $$
 
 This goes for both signed and unsigned values.
 
-A logical shift divides by `2^k` and returns the floor. If the integer is 
+A logical shift divides by $$2^k$$ and returns the floor. If the integer is 
 unsigned, a logical right shift is used, where as an arithmetic right shift is 
 used for signed values.
 
@@ -258,7 +261,7 @@ $$
 x >> k = \lfloor \frac{u}{2^k} \rfloor
 $$
 
-For signed values, and since the floor always rounds down, if `x<0`, we can get 
+For signed values, and since the floor always rounds down, if $$x<0$$, we can get 
 a wrong value, in this case, it would be good to get the cieling, in this case we 
 just compute
 
@@ -293,7 +296,7 @@ for these two possible overflows.
 
 
 For signed multiplication, there are somethings to note. Particularly, the 
-multiplication will ignore the higher order `w` bits, moreover, it seems to 
+multiplication will ignore the higher order $$w$$ bits, moreover, it seems to 
 leave the least significant bits the same as well.
 
 ![Overflow of signed integers.](../.gitbook/assets/2021-08-20_17-07_1.png)

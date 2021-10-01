@@ -21,8 +21,8 @@ by the operating system.
 
 Every machine has a given "word size", which describes how big addresses are. 
 Typical `32` bit machines use `4` bytes as one _word_, which limits the address 
-space to `4GB` or `2^32` possible bytes. Most machines now have `64` bit word 
-sizes, increasing the address space to `18 EB` or `18.4 x 10^18` total bytes. 
+space to `4GB` or $$2^32$$ possible bytes. Most machines now have `64` bit word 
+sizes, increasing the address space to `18 EB` or $$18.4 x 10^18$$ total bytes. 
 Most `64` bit machines support `32` bit word sizes, and also support multiple 
 data formats which make up fractional or multiples of words, and must always be 
 an integral number of bytes.
