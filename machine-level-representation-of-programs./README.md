@@ -9,7 +9,7 @@ was designed to be backwards compatible up until the `8086` processor models.
 Most notably, the most recent Chromebook computers and Macbooks switched from 
 `x86` processors to `ARM`.
 
-That one architecture is _backwards compatible_ means that any modern machine 
+That one architecture is **backwards compatible** means that any modern machine 
 with this model of processor can run binaries compiled on older processor 
 architectures. The converse is not true however, old computers would not be 
 able to execute binaries compiled on modern `x86` machines. For example, if we 
@@ -25,13 +25,13 @@ addressing. The majority of this course focuses on `x86_64`.
 The `x86` line are also among the first processors to use a complex instruction 
 set. The can execute many different instructions with many different formats 
 \(although only a small subset of these formats are encountered with Linux 
-programs\). These kinds of computers are called _complex instruction set 
-computers_ \(CISC\). Some of the design choices to achieve this were poor 
+programs\). These kinds of computers are called **complex instruction set 
+computers** \(CISC\). Some of the design choices to achieve this were poor 
 however; the name of registers were poorly though out, and the assembly 
 language is complex. As they added new features to this architecture, they added 
 new assembly instructions. This led to a complex design for the processor. This 
 isn't necessarily efficient, and makes it hard to match the performance of 
-_reduced instruction set computers_ \(RISC\); however, Intel has done just 
+**reduced instruction set computers** \(RISC\); however, Intel has done just 
 that, increasing speed, albeit at the cost of power. These provide tradeoffs 
 in efficiancy and performance and shows how complicated designing architectures 
 is. As of now,
@@ -39,7 +39,7 @@ is. As of now,
 ## Milestones for the `x86` processor.
 
 The following table shows the evolutions of `x86` processors related to Moore's 
-law. _Moore's law_ states that the number of transistors one can put in a 
+law. **Moore's law** states that the number of transistors one can put in a 
 processor doubles every `2` years \(or `1.5`\). This turned out to be a rather 
 optimistic prediction. Moore's law seems to grow exponentially, however due to 
 limitations in resources, the growth is actually logistic, and will eventually 
@@ -60,13 +60,13 @@ We also include a list of notable facts about each processor.
   * `1MB` of address space.
 * `386`
   * First `32` bit `intel` processor, also referred to as `IA32`.
-  * Added _flat addressing_ and was capable of running unix.
+  * Added **flat addressing** and was capable of running unix.
 * `Pentium 4E`
   * First `64` bit intel processor, also referred to as `x86_64`.
   * The Netburst architecture used for these chips was the bases for the dual
     core `Xeon 2.8` processors is `Ada`.
 * `Core 2`
-  * Amongst the first _multi-core_ intel processors.
+  * Amongst the first **multi-core** intel processors.
 * `Core i7`
   * The first processor to use `4` cores.
 
@@ -79,14 +79,14 @@ transistors on a chip without increasing the frequency. This can be a problem,
 since increasing CPU frequency increases the operating temperature of the 
 processor, which can lead to meltdown; some of the first CPUs got so hot that 
 they could be used to fry an egg. One solution that eases the problem is to 
-"split" the processor into multiple chips called _cores_ which can work 
+"split" the processor into multiple chips called **cores** which can work 
 independently of each other.
 
 ![The Layout of a typical multicore processor.](../Figures/Chapter3/integratedMemoryController.png)
 
 Notice that the `Core 2` and `i7` processors decreased in frequency. This is due 
 to being multicore processors. Now we can find processors with up to `8` cores. 
-There is also the question of how processors are _etched_, that is how they are 
+There is also the question of how processors are **etched**, that is how they are 
 made. Smaller processors can typically support higher frequencies without 
 overheating. This has allowed us to make multicore processors that reach 
 higher frequencies.
@@ -135,7 +135,7 @@ behind; relying on external semiconductor manufacturers.
 
 Focusing now on Intel, in 2001 Intel attenmpted a radical shift from the `IA32`
 convention for architecture to `IA64`, it was a completely different
-architecture and considered `IA32` *legacy*, that is something no longer
+architecture and considered `IA32` **legacy**, that is something no longer
 supported. The performance was lackluster. In 2003, AMD stepped in with the
 `x86-64` architecture, this made Intel focus more on the `IA32` architecture,
 and avoid admitting mistakes. In 2004, Intel announced the `EM64T` extension for

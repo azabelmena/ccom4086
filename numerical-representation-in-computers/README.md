@@ -33,11 +33,11 @@ on noisy, or faulty wires, reducing the cost of error correction.
 * `1.20` in decimal is `1.0011001100110011[0011]...` in binary.
 * `1.55213e4` in decimal is `1.1101101101101e13` in binary.
 
-We can encode 8 bits into a _byte_ value. With this encoding, we can represent 
+We can encode 8 bits into a **byte** value. With this encoding, we can represent 
 256 different numbers. In decimal we can represent the numbers `0` to `255` and 
 in binary `00000000` to `11111111`.
 
-Hexidecimal is also a useful way to encode bytes. _Hexadecimal_ is jsut the
+Hexidecimal is also a useful way to encode bytes. **Hexadecimal** is jsut the
 integers $$\mod{16}$$ encoded in a special way. We represent one hexadecimal 
 digit by, `0-9` and `a-f`, as 4 bits, a byte is represented as any combination of two 
 hex digits. For example, the byte `00001111` can be represented as `0x0f` in hex. 
@@ -68,7 +68,7 @@ and their sizes.
 
 | AND  |      |      |      | OR   |      |      |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| `&`  | `0`  | `1`  |      | `|`  | `0`  | `1`  |
+| `&`  | `0`  | `1`  |      | `\|` | `0`  | `1`  |
 | `0`  | `0`  | `0`  |      | `0`  | `0`  | `1`  |
 | `1`  | `0`  | `1`  |      | `1`  | `1`  | `1`  |
 
@@ -78,19 +78,19 @@ and their sizes.
 | `0`  | `1`  |      |      | `0`  | `0`  | `1`  |
 | `1`  | `0`  |      |      | `1`  | `1`  | `0`  |
 
-The way we manipulate binary digits is with _Boolean algebra_, developed by 
+The way we manipulate binary digits is with **Boolean algebra**, developed by 
 George Boole, which defines algebra over the finite field $$\mathbb{F}_2$$. 
 This algebra is useful for representing the logic of computers, in which `1` is 
 encoded as `true` and `0` is `false`. The following are some bitwise operations 
 of boolean algebra.
 
-* The _AND_ operation `&` in where `A&B=1` only when both `A=1` and `B=1` and 
+* The **AND** operation `&` in where `A&B=1` only when both `A=1` and `B=1` and 
 `A&B=0` in any other case.
-* The _OR_ operation `|` where `A|B=1` when either `A=1` or `B=1`, and `A|B=0` 
+* The **OR** operation `|` where `A|B=1` when either `A=1` or `B=1`, and `A|B=0` 
 when both are `0`.
-* The _NOT_ \(or _negation_\) operation `~` where `~A=1` when `A=0` and `A=0` 
+* The **NOT** \(or _negation_\) operation `~` where `~A=1` when `A=0` and `A=0` 
 when `A=1`.
-* The _exclusive OR_ \(_XOR_\) operation `^`, where `A^B=1` when either `A=1` 
+* The **exclusive OR** \(**XOR**\) operation `^`, where `A^B=1` when either `A=1` 
 or `B=1` \(but not both\), and `A^B=0` in any other case.
 
 These operations are applied bit wise, that is if:
@@ -148,8 +148,8 @@ and will never evaluate `p/a` which is a division by `0`.
 
 ### Shift Operations.
 
-There are additional bit operations called _shift operations_. There is a _left 
-shift_ denoted by `<<` and a _right shift_ denoted by `>>`.
+There are additional bit operations called **shift operations**. There is a 
+**left shift** denoted by `<<` and a **right shift** denoted by `>>`.
 
 #### Left Shifts
 
@@ -166,7 +166,7 @@ signififcant bits with `0`.
 #### Right Shifts.
 
 There are two different definitions for what a right shift is. There is a
-_logical_ right shift and an _arithmetic_ right shift.
+**logical** right shift and an **arithmetic** right shift.
 
 Given a bit vector $$x$$ and an integer $$y$$, and the logical right shift
 `>>`, $$x >> w$$ shifts the bits of $$x$$ $$w$$ bits to the right and overwrites

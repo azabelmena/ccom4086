@@ -207,7 +207,7 @@ type, say, a `32` bit `int`, to a larger data type, such as a `64` bit `int`.
 
 ### Truncation.
 
-Given a bit vector $$x=(x_0, \dots, x_w)$$ We can _truncate_ it by dropping the 
+Given a bit vector $$x=(x_0, \dots, x_w)$$ We can **truncate** it by dropping the 
 most significant `w-k` bits in the vector. More formally, given the a bit vector $$x$$ 
 \( as descibed above\). Truncating $$x$$ to $$k$$ bits gives a bit vector of 
 length $$w-k$$ of the form: $$x'=(x_0, \dots, x_{k-1})$$
@@ -234,7 +234,7 @@ to taking the integer mod $$2^k$$. For `signed ints`s, it is similar.
 Given that there are ranges for signed and unsigned integers, operations such as 
 addition and multiplication, and shifting can produce unexepected values. For 
 example, we may add two $$w$$ bit integers and get a $$w+1$$ bit integer \(try adding 
-`1111` to itself\), this produces something called _overflow_, in where the value 
+`1111` to itself\), this produces something called **overflow**, in where the value 
 wraps around the range. This gives the arithmetic upon these kinds of numbers a 
 modular nature.
 
@@ -287,10 +287,10 @@ This cannot be said for unsigned integers.
 For signed integer values, the range goes from a negative value to a postive value, 
 hence there are two ways for addition and multiplication to overflow, the first is 
 where it overflows towards the upperbound, which results in a wrap around to a 
-negative number, we call this _positive overflow_ \(since it overflows in the 
+negative number, we call this **positive overflow** \(since it overflows in the 
 positive direction\). The other way for the value to over flow is towards the 
 lower bound, in where the wrap around will occur at a positive number; this is 
-called _negative overflow_. In either case, the arithmetic should be accounted 
+called **negative overflow**. In either case, the arithmetic should be accounted 
 for these two possible overflows.
 
 

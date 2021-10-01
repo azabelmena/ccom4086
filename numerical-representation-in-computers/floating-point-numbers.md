@@ -8,7 +8,7 @@ same for binary numbers. A binary number can be expressed as:
 $$
 \sum_{i=1}^k{b_i \cdot 2^i}
 $$
-We add a _binary point_ after the digit represented by $$2^0$$, and fractional 
+We add a **binary point** after the digit represented by $$2^0$$, and fractional 
 powers of $$2$$ are represented afte this point. We we get that the binary number 
 `1011.101` can be represented as:
 
@@ -25,8 +25,8 @@ however, we notice that numbers of the form `.1111...1....` are just below
 encode.
 
 There are two limitations to this representation however. The first is that it 
-can only represent numbers of the form $$x/2^k$$ where as other rational numbers 
-have repeating bit representations; for example:
+can only represent numbers of the form $$\frac{x}{2^k}$$ where as other rational 
+numbers have repeating bit representations; for example:
 
 * `1/3 = 0.1010101[01]...`
 * `1/5 = 0.0011001100110[0011]...`
@@ -52,9 +52,9 @@ $$
 (-1)^s2^EM
 $$
 
-Where $$s$$ is the _sign_ bit, $$M$$ is the _significand_ or _mantissa_, which is 
-between $$1.0$$ and $$2.0$$; and $$E$$ is the _exponent_. The encoding of a floating 
-point number is as follows:
+Where $$s$$ is the **sign** bit, $$M$$ is the **significand** or **mantissa**, 
+which is between $$1.0$$ and $$2.0$$; and $$E$$ is the **exponent**. The encoding 
+of a floating point number is as follows:
 
 * `s` is the most significant bit of the number.
 * The `exp` field encodes $$E$$.
@@ -66,15 +66,14 @@ there is a $$1-1$$ relation between $$E$$, $$M$$ and `exp` and `frac`, respectiv
 Choices have to be made in how many bits we want to encode `exp` and `frac`. 
 The more bits we encode into `exp`, the larger the number we can encode. The more 
 bits we encode into `frac`, the more precise, and smaller the values we can 
-encode. There are three ways we can encode `exp` and `frac`. There is _single 
-precision_ encoding, in where the floating point number is encoded with `32` 
+encode. There are three ways we can encode `exp` and `frac`. There is **single 
+precision** encoding, in where the floating point number is encoded with `32` 
 bits, $$1$$ bit for `s`, $$8$$ bits for `exp`, and $$23$$ bits for `frac`. 
-Alternatively, _double precision_ encodes the floating point in `64` bits, with $$1$$ 
-bit for `s`, $$11$$ bits for `exp` and $$52$$ bits for `frac`. Finally there is 
-the _extended precision_ encoding, which encodes the floating point number in $$80$$ 
-bits. Again, $$1$$ bit for `s`. In extended precision, $$15$$ bits are used for 
-`exp` and $$64$$ bits for $$frac$$ \(sometimes $$63$$\). Extended precision is 
-supported only by Intel.
+Alternatively, **double precision** encodes the floating point in `64` bits, 
+with $$1$$ bit for `s`, $$11$$ bits for `exp` and $$52$$ bits for `frac`. Finally there is the **extended precision** encoding, which encodes the floating point 
+number in $$80$$ bits. Again, $$1$$ bit for `s`. In extended precision, $$15$$ 
+bits are used for `exp` and $$64$$ bits for $$frac$$ \(sometimes $$63$$\). 
+Extended precision is supported only by Intel.
 
 ![](../.gitbook/assets/2021-09-09_09-31.png)
 
@@ -83,7 +82,7 @@ supported only by Intel.
 Given the following floating point integer `float f = 15213.0`, we see that 
 `15213 = 11101101101110` is an integer value, but we do not have to store it 
 as an interger. However, this integer does not fit in the established 
-representation for floating point numbers. For this, we can _normalize_ the 
+representation for floating point numbers. For this, we can **normalize** the 
 mantissa to be between `1.0` and `2.0`. In accordance, we would then express 
 this as: `15213 = 1.1101101101110e13`. This is similar to scientific notation 
 for base $$10$$.
@@ -104,7 +103,7 @@ $$
 
 ### Denormalized Values.
 
-We use _denormalized_ values specifically when `exp = 000...0`. In this case, 
+We use **denormalized** values specifically when `exp = 000...0`. In this case, 
 we encode the mantissa as `M = 0.xxx...x`, where `frac = xxx...x`, and we encode 
 `E` as `E = 1-bias`.  Cases for denormalized values include when both `exp = 
 000...0` and `frac = 000...0`, which represents `0`, or when `exp = 000...0` 
@@ -120,9 +119,8 @@ performed. It inlcudes both positive and negative infinity.
 * `exp = 111...1` and `frac =/= 000...0`. This case is represented as the values 
 `NaN`, \(which stands for _Not A Number_\), and represents the case when no 
 numerical value can be determined. `NaN` also encompasses illegal operations 
-such as those which lead to indeterminate forms, such as $$sqrt(-1)$$ 
-\(remember floating points represent reals\), $$\infty-\infty$$ or $$0 \cdot
-\infty$$.
+such as those which lead to indeterminate forms, such as $$\sqrt(-1)$$ 
+\(remember floating points represent reals\), $$\infty-\infty$$ or $$0 \cdot \infty$$.
 
 Thus we can visualize the space of \(IEEE encoded\) floating point numbers in 
 the following picture.
@@ -154,7 +152,7 @@ normalized values, and normalized values against infinity.
 ## Rounding, Addition, and Multiplication of Floating Points.
 
 We define to operations of addition and multplication of floating point numbers 
-as follows: Given two floating point numbers $$x$$ and $$y$$ and a _rounding_ 
+as follows: Given two floating point numbers $$x$$ and $$y$$ and a **rounding** 
 function $$\text{Round}$$, then:
 
 $$
@@ -230,7 +228,7 @@ ossible types. The `float` type declares a single precision floating point numbe
 while the `double` type declares double precision floating point numbers. 
 Casting between `int`, `double` and `float` changes the bit representation of 
 the variable. Most notabally, when `double`s or `float`s are cast to `int`s, 
-the fractional part of the variable gets _truncated_ to `0`. However, this 
+the fractional part of the variable gets **truncated** to `0`. However, this 
 conversion is not defined when out of range. Another case is when the 
 `float`/`double` is a `NaN`, or out of range, then it is usualy cast to $$-2^w$$.
 
@@ -243,5 +241,5 @@ will be made. In the case of `int` operated with `int`, the resultant is always
 treated as an `int`. That is if we take $$3/4$$ where $$3$$ and $$4$$ are both `int`, 
 the resultant is actually `3/4 = 0`, since casting floating points to `int` 
 always truncates the fractional part. Operating `int` with `float`, the `int` 
-is _promoted_ to `float` and when operating `float` with `double`, the `float` 
+is **promoted** to `float` and when operating `float` with `double`, the `float` 
 is promoted to `double`.

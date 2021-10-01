@@ -9,9 +9,9 @@ description: >-
 ## Byte Oriented memory orginization.
 
 We can visualize computer memory as a large array of bytes, and a byte is the 
-smallest of unit that one can access. Bytes in memory are referred to by _
-addresses_ which is an index to the array of memory. Addresses are encoded 
-in hexadecimal, and goes from address `00...0` to `ff...f`. _Pointers_ are 
+smallest of unit that one can access. Bytes in memory are referred to by 
+**addresses** which is an index to the array of memory. Addresses are encoded 
+in hexadecimal, and goes from address `00...0` to `ff...f`. **Pointers** are 
 variables that store memory addresses. We also note that systems provide 
 private access to memory to processes. Each process can access the memory 
 allocated for it, but not that of others. Each process is explicitly controlled 
@@ -20,7 +20,7 @@ by the operating system.
 ## Machine Words.
 
 Every machine has a given "word size", which describes how big addresses are. 
-Typical `32` bit machines use `4` bytes as one _word_, which limits the address 
+Typical `32` bit machines use `4` bytes as one **word**, which limits the address 
 space to `4GB` or $$2^32$$ possible bytes. Most machines now have `64` bit word 
 sizes, increasing the address space to `18 EB` or $$18.4 x 10^18$$ total bytes. 
 Most `64` bit machines support `32` bit word sizes, and also support multiple 
@@ -63,19 +63,19 @@ types of type `char`.  Each character is encoded in ASCII format, and \(shoulb b
 terminated with the _null byte_ `0`, or `\0`. Byte ordering is not an issue since 
 each character is only `1` byte.
 
-Apart from the ASCII standard, there is also the _Unicode_ standard which is used 
-to represent a whole space of characters that ASCII cannot represent. The Unicode
-standard was created due to the limitations of ASCII for representing characters 
-from other languages such as the letters `ç` or `ñ` in portuguese/french and 
-spanish \(respectively\). Thus the Unicode standard handles consistent encoding, 
-and representation of text in different languages and and writing systems. It 
-can handle latin, greek, currency, and mathematical symbols, and even emojis. 
-The Unicode encodings while have the same encodings for ASCII for the characters 
-that come from ASCII, but also encode characters and scripts from outside of 
-ASCII with different codes. Most characters for Unicode will require more than 
-`8` bits to encode a  character, as with ASCII; so data types of type `char` 
-encoded in Unicode can be well over `1` byte in length \(byte ordering will 
-matter in this case\). This gives us the concept of a _Unicode strings_.
+Apart from the ASCII standard, there is also the **Unicode** standard which is 
+used to represent a whole space of characters that ASCII cannot represent. The 
+Unicode standard was created due to the limitations of ASCII for representing 
+characters from other languages such as the letters `ç` or `ñ` in portuguese/french 
+and spanish \(respectively\). Thus the Unicode standard handles consistent 
+encoding, and representation of text in different languages and and writing 
+systems. It can handle latin, greek, currency, and mathematical symbols, and even 
+emojis. The Unicode encodings while have the same encodings for ASCII for the 
+characters that come from ASCII, but also encode characters and scripts from 
+outside of ASCII with different codes. Most characters for Unicode will require 
+more than `8` bits to encode a  character, as with ASCII; so data types of type 
+`char` encoded in Unicode can be well over `1` byte in length \(byte ordering 
+will matter in this case\). This gives us the concept of a **Unicode strings**.
 
 ### Unicode Strings.
 
@@ -83,10 +83,10 @@ Unicode strings are just like regular strings, except in `C`, they need
 conversion from a conventional ASCII string. There are two types of conventions. 
 The `UTF-8` convention reads encoding by `8` bits, so endianness is not an issue 
 in this case, however, strings can have more than `1` byte. Some software will 
-require a _magic number_ to signal `utf-8` encoding, this magic number will 
+require a **magic number** to signal `utf-8` encoding, this magic number will 
 usually by `ef bb bf`.
 
 We also have the `utf-16` encoding. In this encoding scheme, characters are read 
 by `16` bits, so endianness matters, and the magic number for indicating `utf-16`
 encoding is `fe ff` \(big endian\) or `ff fe` \(little endian\). These magic 
-numbers are also calle _Byte order Marks_ or _BOMs_ for short.
+numbers are also calle **Byte order Marks** or **BOMs** for short.

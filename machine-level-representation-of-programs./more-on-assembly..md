@@ -1,23 +1,30 @@
 # More on Assembly.
 
-We would like to go more in depth on assembly language, as it will be essential to understanding computer architecture and how programs are executed in a particular architecture. As we have mentioned before, different architectures produce different assembly for the same source code. Assembly of one program compiled on an `x86` machine will have assembly different to that of the same program compiled on an `ARM` processor. Actually, assembly produced under different flavors of `x86` will also be different. We focus on the `x86` architecture and the assembly for it.
+We would like to go more in depth on assembly language, as it will be essential 
+to understanding computer architecture and how programs are executed in a 
+particular architecture. As we have mentioned before, different architectures 
+produce different assembly for the same source code. Assembly of one program 
+compiled on an `x86` machine will have assembly different to that of the same 
+program compiled on an `ARM` processor. Actually, assembly produced under 
+different flavors of `x86` will also be different. We focus on the `x86` 
+architecture and the assembly for it.
 
 ## Registers.
 
 We went over one type of register previously, and that is the `rip`/`eip` register. 
-We call it the _instruction pointer_ because it points to the next instruction in 
-memory. This is what the program counter uses to keep track of instructions. In 
-`x86_64` machines, the instruction pointer is denoted by `rip`, in assembly where as 
-for `x86_32` machines, it is denoted as `eip` in assembly. Modern computers now 
-usually use `64` bit addressing, so we will refer to this register as `rip`. 
-`rip` is very important in assembly because it will tell the machine which 
-instruction to execute next. When we call a register a _pointer_ that means the 
+We call it the **instruction pointer** because it points to the next instruction 
+in memory. This is what the program counter uses to keep track of instructions. 
+In `x86_64` machines, the instruction pointer is denoted by `rip`, in assembly 
+where as for `x86_32` machines, it is denoted as `eip` in assembly. Modern 
+computers now usually use `64` bit addressing, so we will refer to this register as
+`rip`. `rip` is very important in assembly because it will tell the machine which 
+instruction to execute next. When we call a register a **pointer** that means the 
 register stores a memory address, in the case of the instruction pointer, it contains 
 the address of the next instruction in memory. There are other pointers such as the 
 stack pointer which contains an address at the top of a stack (more on these 
 registers below).
 
-Typically, when a pointer contains an address, we say that the pointer _points_ 
+Typically, when a pointer contains an address, we say that the pointer **points** 
 to the address. It is no surprise that there is a `1-1` correspondence between 
 pointers in assembly and pointers in `C/C++`.
 
@@ -71,14 +78,14 @@ fs             0x0                 0
 gs             0x0                 0
 ```
 
-The first `4` registers are the _general purpose registers_. They are called 
-(in order of appearance\) the _accumulator_, _base_, _counter_, and _data_ 
+The first `4` registers are the **general purpose registers**. They are called 
+(in order of appearance\) the **accumulator**, **base**, **counter**, and **data** 
 registers, and are denoted as `rax`, `rbx`, `rcx`, and `rdx` respectively. 
 These registers are the main registers that will be used as temporary variables 
 for the CPU, they can also be used for other purposes. The second `4` registers 
-are the  _source index_, _destination index_, _base pointer_, and _stack pointer_
-registers and are `rsi`, `rdi`, `rbp`, and `rsp` respectively. These are also 
-general purpose registers and are used for indexing data and pointing to 
+are the  **source index**, **destination index**, **base pointer**, and **stack 
+pointer**registers and are `rsi`, `rdi`, `rbp`, and `rsp` respectively. These 
+are also general purpose registers and are used for indexing data and pointing to 
 addresses in memory. For example `rbp` and `rsp` are used for setting up a stack. 
 So these registers are important for memory management within the program. 
 There are load and store instructions that use these registers, but they 
@@ -105,7 +112,7 @@ and so one. We give a table below:
 
 We clarfy that the registers in the `15`-`8`, and `7-0` ranges are encompassed
 by the `16` bit registers, hence there are some blank spaces, when it concerns
-the index and pointer registers. We call these registers the _high_ and _low_
+the index and pointer registers. We call these registers the **high** and **low**
 registers respectively.
 
 ## Assembly Syntax.
@@ -115,13 +122,19 @@ first is the `AT&T` syntax and the second is the `intel` syntax. Both have their
 differences. Typically, `intel` syntax looks like:
 
 ```text
+intel
+------------------------------------
 operation   <destination>   <source>
+------------------------------------
 ```
 
 whereas `AT&T` syntax looks like:
 
 ```text
+AT&T
+------------------------------------
 operation   %<source>       %<desitination>
+------------------------------------
 ```
 
 Here the % in `AT&T` assembly syntax is used to denote registers. It is also the 
@@ -141,23 +154,23 @@ Dump of assembler code for function main:
    0x0000000000001152 <+25>:    ret
 ```
 
-Operations in assembly can be _unary_, taking one argument, such as the above 
-instruction `push %rbp`, or they could be _binary_ taking two arguments, such as 
-`mov %rsp, %rbp`; the can also take no arguments, such as a `ret` instruction,
+Operations in assembly can be **unary**, taking one argument, such as the above 
+instruction `push %rbp`, or they could be **binary** taking two arguments, such 
+as `mov %rsp, %rbp`; the can also take no arguments, such as a `ret` instruction,
 which signifies a return. Operations in assembly are usually intuitive mnemonics, 
 for example `mov` moves the data from one register into the other \(overwriting the 
 previous data in the process\), and `push` pushes the value of a register onto a 
-stack. Operations beginning with a `j` usually denote a _jump_ from one 
+stack. Operations beginning with a `j` usually denote a **jump** from one 
 instruction to another; for example `jle` stands for "jump if less than or 
 equal", and jumps to a location in memory if the current value is less than or 
 equal to the one it is being compared too. `jle` is usually preceded by a `cmp`
 instruction which compares the relevant values.
 
 What is important to keep kin mind is that the first few instructions form what 
-is called the _function prologue_ \(or _procedure prologue_\) and are called to 
-set up the memory for what comes after. The last few instructions likewise are 
-called the _function epilogue_ \(_procedure epilogue_\) and returns the memory 
-to the state it was before the function prologue was called. In the above 
+is called the **function prologue** \(or **procedure prologue**\) and are called 
+to set up the memory for what comes after. The last few instructions likewise are 
+called the **function epilogue** \(**procedure epilogue**\) and returns the 
+memory to the state it was before the function prologue was called. In the above 
 disassembly:
 
 ```c
@@ -182,13 +195,13 @@ function epilogue effectively inverses the function prologue.
 Integer data types, like in `C` are stored in `4` bytes in assembly. In this 
 instance, we say that the `int` data type is one "word" in memory. The basic unit 
 of data is a `byte`, and assembly organizes these data units in `4` byte units 
-called _words_. We call a _halfowrd_ something that is `2` bytes in size, hence 
-the name, and data presented in `8` bytes is called a _giant_, so `double`s in 
-`C` are stored in giants in assembly code.
+called **words**. We call a **halfowrd** something that is `2` bytes in size, 
+hence the name, and data presented in `8` bytes is called a **giant**, so 
+`double`s in `C` are stored in giants in assembly code.
 
 There are other conventions for words. Most notably `dwords` and `qword`. Like 
-the mnemonic suggests, a `dword` is a _double word_, that is, it is a unit of 
-two words. A `qword` is mnemonic for _quad word_ and encompasses a unit of four 
+the mnemonic suggests, a `dword` is a **double word**, that is, it is a unit of 
+two words. A `qword` is mnemonic for **quad word** and encompasses a unit of four 
 words. In some cases this terminology can be confusing. In some circles, a `dword` 
 is referred to as `4` bytes \(i.e. the same as a word.\), and a word as `2` bytes 
 \(i.e the same as a half word\); that is the terms `word` and `dword` can be used 
@@ -205,9 +218,9 @@ Before we can even consider doing anything with assembly, or even analyzing it,
 we must know how memory is managed by programs. We exclusively consider `C` 
 programs compiled with the `gcc` compiler.
 
-A compiled programs memory is allocated into five _segments_ \(blocks of 
-contiguous memory\) called the _text_ segment \(or _code_ segment\), _data_ 
-segment, _bss_ segment, the _heap_, and the _stack_.
+A compiled programs memory is allocated into five **segments** \(blocks of 
+contiguous memory\) called the **text** segment \(or **code** segment\), **data** 
+segment, **bss** segment, the **heap**, and the **stack**.
 
 ### The Text Segment.
 
@@ -259,7 +272,8 @@ memory addresses \(in most implementations\). The stack is used mainly as a
 place to store addresses to functions \(for function calls\), and non 
 global/static variables. When these functions or variables are no longer needed, 
 they are popped off of the stack. This is the reason why variables declared in 
-functions "die" when the function terminates; where as global/static variables persist.
+functions "die" when the function terminates; where as global/static variables 
+persist.
 
 When a function is called with the `call` instruction in assembly, the address 
 of `rip` is changed to that of the function, and the program continues in the 
@@ -267,14 +281,14 @@ function's block of memory. If `rip` is not changed when the relevant function
 finishes, the program would terminate \(or crash\), for this reason, the stack 
 stores a copy of the address `rip` should return to after the function terminates, 
 so that execution can can be proceed as it should. We call the address the stack 
-saves the _saved `rip`_ address. The stack also "remembers" all the passed 
+saves the **saved `rip`** address. The stack also "remembers" all the passed 
 variables \(function arguments\). All this information, the address of the 
 function, the saved frame pointer, the variables of the function, and the 
-function's arguments are all stored together on a _stack frame_. The stack 
+function's arguments are all stored together on a **stack frame**. The stack 
 can have multiple stack frames coinciding with multiple function calls. The 
-stack is literally a stack data structure, and hence follows the _FILO_ 
-\(_first in last out_\) ordering. As functions are called, stack frames are 
-_pushed_ onto the stack, and once the functions terminate, they are _popped_ 
+stack is literally a stack data structure, and hence follows the **FILO** 
+\(**first in last out**\) ordering. As functions are called, stack frames are 
+**pushed** onto the stack, and once the functions terminate, they are **popped** 
 off.
 
 The stack pointer `rsp` is used to keep track of what is at the top of the 
@@ -284,14 +298,14 @@ the stack, hence the name "stack pointer".
 When a function is called, several things are pushed onto the stack in a stack 
 frame. The aforementioned function address, variables, arguments, are bundled 
 together as discussed above; in addition, `rbp` is also in the stack frame, and 
-in this context is called the _frame pointer_. `rbp` points to locations within 
+in this context is called the **frame pointer**. `rbp` points to locations within 
 the stack frame itself, and is used to reference local function variables. 
-Another pointer called the _saved frame pointer_ is also stored in the stack 
-frame, as well as the _return_ address of the function. The saved frame pointer 
+Another pointer called the **saved frame pointer** is also stored in the stack 
+frame, as well as the **return** address of the function. The saved frame pointer 
 and the saved `rip` are necessary to return the execution flow to where it should 
 be once the stack frame is popped. The saved frame pointer returns `rbp` to its 
 previous address before the function call, and the saved `rip` returns `rip` 
-to the address after call. The saved `rip` is also called the _return_ address 
+to the address after call. The saved `rip` is also called the **return** address 
 of the function. The instruction in assembly to restore `rip` is `ret`. The 
 first few instructions in the function prologue effectively set up the stack 
 frame for the function. The function epilogue are the instructions that 
@@ -408,7 +422,7 @@ exit_group(0)                           = ?
 ```
 
 Here we see that `write()` is called with three arguments. The first is the 
-_file descriptor_ for `stdout`. File descriptors are used for everything in 
+**file descriptor** for `stdout`. File descriptors are used for everything in 
 `unix`; input, output, networking, etc. What a file descriptor is is a reference 
 to a file, which is referenced by an integer. In this case, the file descriptor 
 is `1` for `stdout`. The first three file descriptors `0`, `1`, and `2` are 
@@ -422,7 +436,7 @@ write out; in this case "Hello, world!" with a newline character, and the third
 argument is the length of the message. `Hello, world!\n` has a length of `14` 
 bytes.
 
-Next comes the `exit()` syscall, which just takes one argument: the _exit code_. 
+Next comes the `exit()` syscall, which just takes one argument: the **exit code**. 
 `exit()` is called with exit code `0` which means that the program terminated 
 successfully. Calling `exit()` with exit code `1` indicates that the program 
 exited with error\(s\).
@@ -526,7 +540,7 @@ the output file, and our assembly program.
 
 This produces the `hello.o` object file, which we cannot run, so we need the use 
 of a linker to be able to output a proper binary. Luckily, `linux` comes with a 
-linker called the _GNU linker_, and is called via the `ld` command in the 
+linker called the **GNU linker**, and is called via the `ld` command in the 
 terminal. Thus we input `hello.o` into the `ld` to get a `hello` binary. Running 
 `hello` should output `Hello, world!` on the screen.
 
@@ -547,7 +561,7 @@ calling convention. For example we can no longer use `rdi`, `rsi`, and `rdx`
 to set up the arguments for `write()`. Instead `32` bit calling convention 
 reserves `ebx`, `ecx` and `edx` for the first three arguments of any given 
 syscalls. Similarly, syscalls cannot be called with `syscall`, but are instead 
-called with the `int` instruction, which stands for _interrupt_, `int` sends 
+called with the `int` instruction, which stands for **interrupt**, `int` sends 
 an interrupt to the operating systems kernel to execute a process. In this case, 
 `int 0x80` is the interrupt for calling syscalls. Rewriting `helloWorld.asm`, 
 the program would look like:
@@ -592,7 +606,7 @@ analogue to machine language. That means that assembly is intrinsically tied to
 the hardware of any given machine. Desktop, laptop, and server computers all 
 have their own assembly language; as do microcontrollers, and even GPUs.
 
-Since assembly is 1-1 with machine code, we do not have to program in machine 
+Since assembly is $$1-1$$ with machine code, we do not have to program in machine 
 code to be able to see how the hardware works. Instead of remembering binary
 representations for instructions such a `add` and `mov`, we can remember the 
 mnemonics. Instead of having to worry about specific addresses, we can just 
@@ -603,7 +617,7 @@ Assembly language also allows for very granular control. The downside is that it
 makes it hard to debug and maintain, however programming in assembly should be 
 done sparingly. It also helps hackers compromise systems. By understanding the 
 assembly, they can get the system they want to compromise to do whatever they 
-want. The can also write pieces of assembly code called _shellcode_ that when 
+want. The can also write pieces of assembly code called **shellcode** that when 
 injected into a vulnerable program, allows them arbitrary code execution.
 
 Assembly language teaches us how the hardware works, so understanding the 
