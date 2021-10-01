@@ -24,7 +24,6 @@ what a `gdb` instance looks like when run through the terminal. Here we use
 `gdb` on the `sum` program.
 
 ```bash
-
 ~/ccom4086/ > gcc -Og -g -o sum sum.c
 ~/ccom4086/ > gdb sum
 GNU gdb (GDB) 11.1
@@ -70,3 +69,29 @@ A debugging session is active.
 
 Quit anyway? (y or n) y
 ```
+
+Here we compile `sum.c` with the debug flag `-g` which includes extra debugging
+information that we can use in `gdb`. It is not nessesary however. Notice that:
+
+```
+~/ccom4086/ > gcc -Og -o sum sum.c
+~/ccom4086/ > gdb -q sum
+Reading symbols from sum...
+(No debugging symbols found in sum)
+(gdb) list
+No symbol table is loaded.  Use the "file" command.
+(gdb) disassemble sumstore
+Dump of assembler code for function sumstore:
+   0x000000000000111e <+0>:	push   %rbx
+   0x000000000000111f <+1>:	mov    %rdx,%rbx
+   0x0000000000001122 <+4>:	call   0x1119 <plus>
+   0x0000000000001127 <+9>:	mov    %rax,(%rbx)
+   0x000000000000112a <+12>:	pop    %rbx
+   0x000000000000112b <+13>:	ret
+End of assembler dump.
+(gdb) quit
+```
+
+Notice how we can not get a view of the source code without the `-g` flag. Here
+the `-q` flag just suppresses the copyright information displayed upon running
+`gdb`. We will be running `gdb` with this flag to make examples consise.
