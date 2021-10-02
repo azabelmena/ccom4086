@@ -36,7 +36,7 @@ If we wanted to implement basic optimization, and even compile it for debugging,
 ~/ccom4086/ > gcc -Og -g -o p p1.c p2.c
 ```
 
-![](../.gitbook/assets/assemblyAndLinkage.png)
+![](../.gitbook/assets/assemblyAndLinkage%20%282%29%20%281%29.png)
 
 ```c
 // sum.c

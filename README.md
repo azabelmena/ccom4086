@@ -1,8 +1,10 @@
-# Introduction.
+# Introduction
+
+## Introduction.
 
 This introductory page goes through the class structure and operation, and also goes over the syllabus‌‌
 
-## Class Orginization and Syllabus.‌ <a id="class-orginization-and-syllabus"></a>
+### Class Orginization and Syllabus.‌ <a id="class-orginization-and-syllabus"></a>
 
 ‌
 
@@ -12,7 +14,7 @@ All the material will be posted on moodle. Material will consist of videos, slid
 
 The course meets on Tuesdays, and Thursdays from 08.30-09.50, and office hours are on Mondays and Thursdays from 14.00-16.00. The relevent meets link will be found in the class page on moodle as well.The meet links and the professor's email are ommitted for security.‌‌
 
-### Course Components <a id="course-components"></a>
+#### Course Components <a id="course-components"></a>
 
 ‌
 
@@ -22,7 +24,7 @@ The course meets on Tuesdays, and Thursdays from 08.30-09.50, and office hours a
 * Independent study project - 20%
   * One individual project, one group project.
 
-### Topics <a id="topics"></a>
+#### Topics <a id="topics"></a>
 
 ‌
 
@@ -73,19 +75,19 @@ Along with their applications and supplementary material.‌‌
 
 The class will consist of quizes, labs and projects \(one group and one individual\).‌‌
 
-### The Abstraction of Computer Science. <a id="the-abstraction-of-computer-science"></a>
+#### The Abstraction of Computer Science. <a id="the-abstraction-of-computer-science"></a>
 
 levels of abstraction for computer architecture.‌
 
 Most computer science courses focus on abstraction which is useful when planning out a project and not having to worry about specific details. It should be noted that abstraction still has limits, especially when it comes to finding bugs in certain programs, optimization of said programs, and the general need to understand the underlying structures of what you're working with.‌
 
-## Useful outcomes <a id="useful-outcomes"></a>
+### Useful outcomes <a id="useful-outcomes"></a>
 
 ‌
 
 Some outcomes from this class will be that oe will become a more efficient programmer, who knows how to find bugs efficiently and optimize their code.‌‌
 
-## The Great Reality <a id="the-great-reality"></a>
+### The Great Reality <a id="the-great-reality"></a>
 
 ‌
 
@@ -97,13 +99,13 @@ is true for floating point number, however, for `int`s, it is not, if the intege
 
 And `(1e20+-1e20) = 3.140000` but `1e20+(-1e20+3.14) = 0.000000`.‌
 
-### Computer Arithmetic <a id="computer-arithmetic"></a>
+#### Computer Arithmetic <a id="computer-arithmetic"></a>
 
 ‌
 
 Some thing to note about computer arithmetic is that no random values are generated, and the usual mathematical properties must be thrown out the window. As we have seen, associativity does not hold for floating point numbers, if we take the set of all possible arithmetic operations as a set over `int`s and over `float`s \(respectively\), we see that for an `int`, that the filed is obviouslt finite, because of overflow, moreover, they form a ring under the usual addition and multiplication. In terms of floats, what is most notable is that they satisfy the usual order relation on the reals.‌
 
-### Assembly is important <a id="assembly-is-important"></a>
+#### Assembly is important <a id="assembly-is-important"></a>
 
 ‌
 
@@ -117,7 +119,7 @@ One needs to know assembly language. You may not write assmebly language, but kn
 
 ‌
 
-### Random Access Memory \(RAM\) <a id="random-access-memory-ram"></a>
+#### Random Access Memory \(RAM\) <a id="random-access-memory-ram"></a>
 
 ‌
 
@@ -127,18 +129,19 @@ Lastly, memory is not uniform, programs depend on virtual memory, and memory sto
 
 Where does RAM come in? RAM is just another abstraction of memory, in which the memory is volitile, Read Only Memory \(ROM\) is another type of memory to be aware of. For the most part, most of the memory in a computer is RAM.‌
 
-### Memory in C/C++ <a id="memory-in-c-c"></a>
+#### Memory in C/C++ <a id="memory-in-c-c"></a>
 
 ‌
 
 Unlike programming languages such as `java`, `ruby`, or `python`, `C/C++` does not hold your hand when it comes to memory. They do not offer memory protection, meaning it is easy to make out of bounds references, bad memory allocation on deletion, and invalid pointer. All these issues lead to bugs in a program that can be severe, affecting not only performance, but possibly even security \(buffer overflows\). To midigate this, on should knoow what possible affects will happen when allocating/freeing memory and to use a tool to detect errors \(a standard debugger\).‌
 
-### Complexity <a id="complexity"></a>
+#### Complexity <a id="complexity"></a>
 
 ‌
 
-Complexity matters in a program, not just asymptotic complexit of an `O(n^2)` or `O(n)` algorithm, but the specific function is important. Constants in the formula may lead to improvements, or cost. This is useful to optimizing code.
-=======
-# Introduction
->>>>>>> 73da6de1560bcd7db8ba1509112f0ed5c7b02047
+## Complexity matters in a program, not just asymptotic complexit of an `O(n^2)` or `O(n)` algorithm, but the specific function is important. Constants in the formula may lead to improvements, or cost. This is useful to optimizing code.
+
+## Introduction
+
+> > > > > > > 73da6de1560bcd7db8ba1509112f0ed5c7b02047
 
