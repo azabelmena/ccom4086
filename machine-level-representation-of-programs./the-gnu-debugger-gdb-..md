@@ -1,10 +1,27 @@
 # The GNU Debugger \(gdb\).
 
-A **debugger** is a piece of software that is used to debug programs and To **debug** is to find logical and semantic errors in one's code andremove them. We can go even a step further and degub the binary. To be clear, the word _program_ and _binary_ are analogous to eachother, hwoever when used coloquially, the word program also specifies the **source code**, which is what the programmer writes. We then use program to mean either and leave the context to distinguish between the two uses.
+A **debugger** is a piece of software that is used to debug programs. To **debug**
+is to find logical and semantic errors in one's code andremove them. We can go 
+even a step further and degub the binary. To be clear, the word **program** and 
+**binary** are analogous to eachother, hwoever when used coloquially, the word 
+program also specifies the **source code**, which is what the programmer writes.
+We then use program to mean either and leave the context to distinguish between 
+the two uses.
 
-The difference between debugging source code and debugging a program is that one entails removing errors found in the source itself, and the other entails disassembling the program to find **runtime** errors and fix them, and to optimize and observe the code. For example, a debugger can be used to find out what is happening when a program encounters a **segmentation violation**, which is an error that occurs when the program tries to access an illegal address in memory. Another example is a hacker trying to overflow a buffer and insert shellcode; they then open a debugger to view the addresses that they need to execute the buffer overflow attack.
+The difference between debugging source code and debugging a program is that one
+entails removing errors found in the source itself, and the other entails 
+disassembling the program to find **runtime** errors and fix them, and to 
+optimize and observe the code. For example, a debugger can be used to find 
+out what is happening when a program encounters a **segmentation violation**,
+which is an error that occurs when the program tries to access an illegal address
+in memory. Another example is a hacker trying to overflow a buffer and insert 
+shellcode; they then open a debugger to view the addresses that they need to 
+execute the buffer overflow attack.
 
-The principle debugger that is used, for this class, and in general in the field is the **GNU debugger**, more coloquially known as **`gdb`**. Below is typically what a `gdb` instance looks like when run through the terminal. Here we use `gdb` on the `sum` program.
+The principle debugger that is used, for this class, and in general in the field 
+is the **GNU debugger**, more coloquially known as **`gdb`**. Below is typically 
+what a `gdb` instance looks like when run through the terminal. Here we use `gdb`
+on the `sum` program.
 
 ```bash
 ~/ccom4086/ > gcc -Og -g -o sum sum.c
@@ -53,7 +70,8 @@ A debugging session is active.
 Quit anyway? (y or n) y
 ```
 
-Here we compile `sum.c` with the debug flag `-g` which includes extra debugging information that we can use in `gdb`. It is not nessesary however. Notice that:
+Here we compile `sum.c` with the debug flag `-g` which includes extra debugging 
+information that we can use in `gdb`. It is not nessesary however. Notice that:
 
 ```text
 ~/ccom4086/ > gcc -Og -o sum sum.c
@@ -74,5 +92,6 @@ End of assembler dump.
 (gdb) quit
 ```
 
-Notice how we can not get a view of the source code without the `-g` flag. Here the `-q` flag just suppresses the copyright information displayed upon running `gdb`. We will be running `gdb` with this flag to make examples consise.
-
+Notice how we can not get a view of the source code without the `-g` flag. Here 
+the `-q` flag just suppresses the copyright information displayed upon running 
+`gdb`. We will be running `gdb` with this flag to make examples consise.
