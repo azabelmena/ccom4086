@@ -69,23 +69,23 @@ We use **denormalized** values specifically when `exp = 000...0`. In this case, 
 
 Special values for floating point numbers include the following cases:
 
-* `exp = 111...1` and `frac = 000...0`. Here this represents the value infinity. 
+* `exp = 111...1` and `frac = 000...0`. Here this represents the value infinity.
 
-  This case can happen when operations overflow, or when a division by `0` is 
+  This case can happen when operations overflow, or when a division by `0` is
 
   performed. It inlcudes both positive and negative infinity.
 
-* `exp = 111...1` and `frac =/= 000...0`. This case is represented as the values 
+* `exp = 111...1` and `frac =/= 000...0`. This case is represented as the values
 
-  `NaN`, \(which stands for _Not A Number_\), and represents the case when no 
+  `NaN`, \(which stands for _Not A Number_\), and represents the case when no
 
-  numerical value can be determined. `NaN` also encompasses illegal operations 
+  numerical value can be determined. `NaN` also encompasses illegal operations
 
-  such as those which lead to indeterminate forms, such as $$\sqrt(-1)$$ 
+  such as those which lead to indeterminate forms, such as $$\sqrt(-1)$$
 
   \(remember floating points represent reals\), $$\infty-\infty$$ or $$0 \cdot \infty$$.
 
-  Thus we can visualize the space of \(IEEE encoded\) floating point numbers in 
+  Thus we can visualize the space of \(IEEE encoded\) floating point numbers in
 
   the following picture.
 
