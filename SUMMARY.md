@@ -1,11 +1,10 @@
 # Table of contents
 
 * [Introduction](README.md)
-* [Introduction.](introduction.md)
-* [Numerical Representation in Computers.](numericalRepresentationInComputers/numericalRepresentationInComputers.md)
-  * [Integers.](numericalRepresentationInComputers/integers.md)
-  * [Floating Point Numbers.](numericalRepresentationInComputers/floatingpointnumbers.md)
-  * [Representations in Memory.](numericalRepresentationInComputers/representationsInMemory.md)
+* [Numerical Representation in Computers.](numericalrepresentationincomputers/README.md)
+  * [Integers.](numericalrepresentationincomputers/integers.md)
+  * [Floating Point Numbers.](numericalrepresentationincomputers/floatingpointnumbers.md)
+  * [Representations in Memory.](numericalrepresentationincomputers/representationsinmemory.md)
 * [Machine Level Representation of Programs.](machinelevelrepresentations/README.md)
   * [C, Assembly Language, and Machine Code.](machinelevelrepresentations/cassemblyandmachinecode.md)
   * [More on Assembly.](machinelevelrepresentations/moreonassembly.md)
