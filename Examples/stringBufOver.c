@@ -1,27 +1,26 @@
-/*
-A simple program to demonstrate how stack based buffer overflows works.
-To understand what is happening, the code should be run through an assembler.
-*/
 #include<string.h>
 #include<stdio.h>
+#include<unistd.h>
 
 // Copies a string to a buffer of size 16.
 void copy(char*);
 
 int main(int argc, char* argv[]){
 
-    copy(argv[1]);
+    static char input[1024];
 
-    printf("Program returned 0.\n");
+    while(read(STDIN_FILENO, input, 1024)>0){
+        copy(input);
+    }
 
     return 0;
 }
 
 void copy(char* str){
-    char buffer[16]; // declare a string of size 16.
 
+    char buffer[128];
     strcpy(buffer, str);
-    printf("%s\n", buffer);
+    printf("%s\n");
 
     return;
 }
