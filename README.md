@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Introduction.
 
 This introductory page goes through the class structure and operation, and also goes over the syllabus‌‌
