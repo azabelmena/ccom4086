@@ -546,4 +546,4 @@ assembly language, and with `gdb` will help with that, as much as they help with
 building exploits. This section was inspired by, and meant to accompany the
 following article on exploits: [Smashing the stack in the 21st century](https://thesquareplanet.com/blog/smashing-the-stack-21st-century/)
 
-Any credit given should be given to the [author of the article]((https://thesquareplanet.com/blog/smashing-the-stack-21st-century/).
+Any credit given should be given to the [author of the article](https://thesquareplanet.com/blog/smashing-the-stack-21st-century/).
