@@ -1,7 +1,6 @@
 # Table of contents
 
 * [Introduction](README.md)
-* [Introduction.](introduction.md)
 * [Numerical Representation in Computers.](numerical-representation-in-computers/README.md)
   * [Integers.](numerical-representation-in-computers/integers..md)
   * [Floating Point Numbers.](numerical-representation-in-computers/floating-point-numbers.md)

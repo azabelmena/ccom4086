@@ -42,7 +42,7 @@ We also include a list of notable facts about each processor.
 
 One may notice that as the number of transistors goes up the higher the frequency \(`MHz`\) is needed on the chip. Typically the more transistors one has on a chip the more computations one can do on a machine. The typical way to achieve that was to increase the frequency of the processor. Now, most machines use chips that run in the gigahertz \(`Ghz`\). It is also difficult to add more transistors on a chip without increasing the frequency. This can be a problem, since increasing CPU frequency increases the operating temperature of the processor, which can lead to meltdown; some of the first CPUs got so hot that they could be used to fry an egg. One solution that eases the problem is to "split" the processor into multiple chips called **cores** which can work independently of each other.
 
-![The Layout of a typical multicore processor.](../.gitbook/assets/integratedMemoryController%20%281%29.png)
+![The Layout of a typical multicore processor.](../.gitbook/assets/integratedMemoryController%20%282%29%20%281%29.png)
 
 Notice that the `Core 2` and `i7` processors decreased in frequency. This is due to being multicore processors. Now we can find processors with up to `8` cores. There is also the question of how processors are **etched**, that is how they are made. Smaller processors can typically support higher frequencies without overheating. This has allowed us to make multicore processors that reach higher frequencies.
 
