@@ -1,2 +1,0 @@
-# Numerical Representation in Computers.
-

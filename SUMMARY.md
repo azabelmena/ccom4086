@@ -2,7 +2,7 @@
 
 * [Introduction](README.md)
 * [Introduction.](introduction.md)
-* [Numerical Representation in Computers.](numerical-representation-in-computers/numericalRepresentationInComputers.md)
+* [Numerical Representation in Computers.](numericalRepresentationInComputers/numericalRepresentationInComputers.md)
   * [Integers.](numericalRepresentationInComputers/integers.md)
   * [Floating Point Numbers.](numericalRepresentationInComputers/floatingPointNumbers.md)
   * [Representations in Memory.](numericalRepresentationInComputers/representationsInMemory.md)
