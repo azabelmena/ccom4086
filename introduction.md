@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Introduction.
 
 This introductory page goes through the class structure and operation, and also goes over the syllabus‌‌
@@ -139,7 +138,4 @@ Unlike programming languages such as `java`, `ruby`, or `python`, `C/C++` does n
 ‌
 
 Complexity matters in a program, not just asymptotic complexit of an `O(n^2)` or `O(n)` algorithm, but the specific function is important. Constants in the formula may lead to improvements, or cost. This is useful to optimizing code.
-=======
-# Introduction
->>>>>>> 73da6de1560bcd7db8ba1509112f0ed5c7b02047
 
