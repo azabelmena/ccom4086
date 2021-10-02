@@ -5,8 +5,17 @@
   * [Integers.](numerical-representation-in-computers/integers..md)
   * [Floating Point Numbers.](numerical-representation-in-computers/floating-point-numbers.md)
   * [Representations in Memory.](numerical-representation-in-computers/representations-in-memory..md)
+<<<<<<< HEAD
 * [Machine Level Representation of Programs.](machineLevelRepresentationOfProgram/machineLevelRepresentations.md)
   * [C, Assembly Language, and Machine Code.](machineLevelRepresentationOfProgram/cAssemblyAndMachineCode.md)
   * [More on Assembly.](machineLevelRepresentationOfProgram/moreOnAssembly.md)
   * [The GNU Debugger \(gdb\).](machineLevelRepresentationOfProgram/theGnuDebugger/theGnuDebugger.md)
     * [Buffer Overflows.](machineLevelRepresentationOfProgram/theGnuDebugger/bufferOverflows.md)
+=======
+* [Machine Level Representation of Programs.](machine-level-representation-of-programs./README.md)
+  * [C, Assembly Language, and Machine Code.](machine-level-representation-of-programs./c-assembly-and-machine-code..md)
+  * [More on Assembly.](machine-level-representation-of-programs./more-on-assembly..md)
+  * [The GNU Debugger \(gdb\).](machine-level-representation-of-programs./the-gnu-debugger-gdb./README.md)
+  * [Arithmetic and Locgical Operations.](machine-level-representation-of-programs./arithmetic-and-locgical-operations..md)
+
+>>>>>>> 76335136c8db7ed2b107d2590d67d534b00c2159
