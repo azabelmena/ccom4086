@@ -8,6 +8,6 @@
 * [Machine Level Representation of Programs.](machine-level-representation-of-programs./README.md)
   * [C, Assembly Language, and Machine Code.](machine-level-representation-of-programs./c-assembly-and-machine-code..md)
   * [More on Assembly.](machine-level-representation-of-programs./more-on-assembly..md)
-  * [The GNU Debugger \(gdb\).](machine-level-representation-of-programs./the-gnu-debugger-gdb./)
+  * [The GNU Debugger \(gdb\).](machine-level-representation-of-programs./the-gnu-debugger-gdb./README.md)
   * [Arithmetic and Locgical Operations.](machine-level-representation-of-programs./arithmetic-and-locgical-operations..md)
 
