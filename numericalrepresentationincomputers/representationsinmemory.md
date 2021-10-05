@@ -1,12 +1,9 @@
----
-description: >-
-  We go over how memory is organized on a cumputer, and how things like chars,
-  pointers, and strings are represented.
----
+--- description: >- We go over how memory is organized on a computer, and how
+things like chars, pointers, and strings are represented. ---
 
 # Representations in Memory.
 
-## Byte Oriented memory orginization.
+## Byte Oriented memory Organization.
 
 We can visualize computer memory as a large array of bytes, and a byte is the
 smallest of unit that one can access. Bytes in memory are referred to by
@@ -28,7 +25,7 @@ support multiple data formats which make up fractional or multiples of words,
 and must always be an integral number of bytes.
 
 Addresses specify byte locations, and when referencing a data type, the address
-indexes the first byte of the word. That is words are refered to by their firt
+indexes the first byte of the word. That is words are referred to by their first
 byte. So the word `0000 0001 0002 0003` will be reference by `0000`, and the
 next word by `0003` \(for `32` bits\). For `32` bits, the addresses of
 successive words differ by `4`, while for `64` bits, they differ by `8`.
@@ -39,7 +36,7 @@ length\). We reference `x` at its first byte, but since `x` is of `4` bytes in
 length, `x` is actually stored contiguously at addresses `0x100`, `0x101`,
 `0x102`, and `0x103`. Conventions will dictate whether `x` is stored in big
 endian fashion \(for Sun, PCC Mac, or internet\), or little endian \(`x86`, or
-ARM\). Endianness matters for debugging, for considder the follwing disassembly
+ARM\). Endianness matters for debugging, for consider the following disassembly
 
 ```bash
     addr        Machine                Assembly
@@ -51,25 +48,25 @@ ARM\). Endianness matters for debugging, for considder the follwing disassembly
 ```
 
 Which describes a little endian encoding. The machine instruction at `118e` is
-read as `83 7d ec 03`, where as it's corresponfing assembly instruction in `cmpl
+read as `83 7d ec 03`, where as it's corresponding assembly instruction in `cmpl
 $0x3, -0x14(%rpb)`. Here `03` is the most significant byte, and hence
 represented last in the machine code. This makes sense as the corresponding
-program was compiled in an `x86_64` machine.
+program was compiled in an `x86\_64` machine.
 
 ## Strings.
 
 In `C`, strings are represented by arrays of characters, that is an array of
 data types of type `char`. Each character is encoded in ASCII format, and
-\(shoulb be\) terminated with the _null byte_ `0`, or `\0`. Byte ordering is not
-an issue since each character is only `1` byte.
+\(should be\) terminated with the **null byte** `0`, or `\0`. Byte ordering is
+not an issue since each character is only `1` byte.
 
 Apart from the ASCII standard, there is also the **Unicode** standard which is
 used to represent a whole space of characters that ASCII cannot represent. The
 Unicode standard was created due to the limitations of ASCII for representing
 characters from other languages such as the letters `ç` or `ñ` in
-portuguese/french and spanish \(respectively\). Thus the Unicode standard
+Portuguese/french and Spanish \(respectively\). Thus the Unicode standard
 handles consistent encoding, and representation of text in different languages
-and and writing systems. It can handle latin, greek, currency, and mathematical
+and writing systems. It can handle Latin, Greek, currency, and mathematical
 symbols, and even emojis. The Unicode encodings while have the same encodings
 for ASCII for the characters that come from ASCII, but also encode characters
 and scripts from outside of ASCII with different codes. Most characters for

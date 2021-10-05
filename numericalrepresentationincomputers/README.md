@@ -11,18 +11,18 @@ description: >-
 
 ### Binary, Decimal and Hexadecimal
 
-In a computer system, numerical information is encoded in **binray digits**, or
+In a computer system, numerical information is encoded in **binary digits**, or
 **bits**. Bits are encoded as 0 or 1; hence, one can view a computer as working
 over the finite field of two elements $$\mathbb{F}_2$$ \(addition and
-multiplication are difined a little differently\). By encoding bits in various
+multiplication are defined a little differently\). By encoding bits in various
 ways, computers determine what instructions to execute and represent numbers in
 different bases, strings of characters, etc, and manipulate them.
 
-![Binary encoding of voltage. o is low voltage, 1 is high
+![Binary encoding of voltage. 0 is low voltage, 1 is high
 voltage.](../.gitbook/assets/2021-08-19_08-57.png)
 
 Why do computers use bits? Bits are easy to work with. A typical computer
-operates with transistors turning _on_ with a HIGH voltage, and turring _off_
+operates with transistors turning _on_ with a HIGH voltage, and turning _off_
 with a LOW voltage. This makes the values 0 and 1 natural analogs to represent
 LOW and HIGH, OFF and ON, or FALSE and TRUE. So bits are easy to store with
 bistable elements. Another reason why bits are preferred, is that they can be
@@ -39,7 +39,7 @@ We can encode 8 bits into a **byte** value. With this encoding, we can
 represent 256 different numbers. In decimal we can represent the numbers `0` to
 `255` and in binary `00000000` to `11111111`.
 
-Hexidecimal is also a useful way to encode bytes. **Hexadecimal** is jsut the
+Hexadecimal is also a useful way to encode bytes. **Hexadecimal** is just the
 integers $$\mod{16}$$ encoded in a special way. We represent one hexadecimal
 digit by, `0-9` and `a-f`, as 4 bits, a byte is represented as any combination
 of two hex digits. For example, the byte `00001111` can be represented as `0x0f`
@@ -97,14 +97,15 @@ $$
 a=(a_{0}, \dots, a_{k}) \text{ and } b=(b_{0}, \dots, b_{k})
 $$
 
-Are `k` bit binary numbers, and if $$\cdot$$ is a bitwise operation \(not necesarily those of above, then:
+Are `k` bit binary numbers, and if $$\cdot$$ is a bitwise operation \(not
+necessarily those of above, then:
 
 $$
 a \cdot b = (a_{0} \cdot b_{0}, \cdots, a_{k} \cdot b_{k})
 $$
 
-One interesting thing to note, is that, $$\mathbb{F}_2$$ forms an abelian group
-under `&`, and abelian group over `|`, and that `&` distributes over `|`. So `|`
+One interesting thing to note, is that, $$\mathbb{F}_2$$ forms an Abelian group
+under `&`, and Abelian group over `|`, and that `&` distributes over `|`. So `|`
 can be viewed as an addition over $$\mathbb{F}_2$$, and `&` as multiplication
 \(we also see that `|` distributes over `&`\). That is $$\mathbb{F}_2$$ forms
 a field over `&` and `|`. So an computer can be seen as operating over an $$n$$
@@ -122,7 +123,9 @@ more on that later\).
 
 ### Bit Level Operations in C.
 
-In `C/C++`, bit level operations operate on any integal data types \(`char`, `short`, `int`, `long`, and `unsigned`\). And, as described above, they view their arguments as bit vectors, and are applied bitwise.
+In `C/C++`, bit level operations operate on any integral data types \(`char`,
+`short`, `int`, `long`, and `unsigned`\). And, as described above, they view
+their arguments as bit vectors, and are applied bitwise.
 
 #### Example.
 
@@ -135,7 +138,7 @@ In `C/C++`, bit level operations operate on any integal data types \(`char`, `sh
 * `0x69 | 0x55 = 0x7d`.
   * `01101001 | 01010101 = 01111101`.
 
-In contrast to the logical operatiors of `C/C++` \(`&&`, `||`, and `!`\), which
+In contrast to the logical operations of `C/C++` \(`&&`, `||`, and `!`\), which
 view `0` as `false` and any nonzero value as `true`, they will always return `0`
 or `1`, and terminate as early as possible. For example for `int a = 0`, `a &&
 p/a` will return `0`, moreover it will terminate as soon as it evaluates `a`,
@@ -155,8 +158,8 @@ $$
 x << w = (0, \dots, 0, x_{0}, \dots, x_{k-w-1})
 $$
 
-That is the left shift shifts $$x$$ $$w$$ bits to the left and ovewrites the
-least signififcant bits with `0`.
+That is the left shift shifts $$x$$ $$w$$ bits to the left and overwrites the
+least significant bits with `0`.
 
 #### Right Shifts.
 
@@ -186,14 +189,14 @@ of $$x$$.
 
 Given a left or a right \(arithmetic or logical\) shift, and a bit vector, it
 is possible to completely overwrite the bit vector if an integer greater than or
-equal the bit length is chosen. For example, `001100 << 6 = 000000`. And `1010
->> 4 = 0000` or `1010 >> 4 = 1111` \(depending on the context\). For that
-reason, in `C/C++` it is good to choose an integer that is less than the size of
-the given data type when using a either shift operations. In certain cases, it
-may be that the shift operation actually shifts $$k \mod{w}$$ bits, \(where
-$$w$$ is a given integer, and $$k$$ is the size of the data type\), hoewever it
-is not consistent. In some machines, only $$log_2(w)$$ bits of the shift ammount
-will actually be shifted.
+equal the bit length is chosen. For example, 
+`001100 << 6 = 000000`. And `1010 >>4 = 0000` or `1010 >> 4 = 1111` \(depending
+on the context\). For that reason, in `C/C++` it is good to choose an integer
+that is less than the size of the given data type when using a either shift
+operations. In certain cases, it may be that the shift operation actually 
+shifts $$k \mod{w}$$ bits, \(where $$w$$ is a given integer, and $$k$$ is the
+size of the data type\), however it is not consistent. In some machines, only
+$$log_2(w)$$ bits of the shift amount will actually be shifted.
 
-Another behaviour is tha `C` does not precisely define whether a right shift is
+Another behaviour is the `C` does not precisely define whether a right shift is
 logical or arithmetic, leading to portability issues.

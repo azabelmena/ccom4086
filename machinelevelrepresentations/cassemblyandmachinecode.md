@@ -248,9 +248,9 @@ stored in the address. After comes the assembly counter part of the machine
 code.
 
 Any piece of software on a computer can be interpreted as executable code, and
-hence they can be dissassembled via an object dump. The dissassemble examines
+hence they can be disassembled via an object dump. The disassemble examines
 the bytes and reconstructs the assembly source. It is worth noting that while
-one may able to disassemble every peice of software, legal agreements and
+one may able to disassemble every piece of software, legal agreements and
 proprietary licences prohibit it. For example, disassembling a piece of
 a Windows `.exe` binary for reverse engineering is forbidden under the Microsoft
 End User License Agreement.

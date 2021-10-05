@@ -337,9 +337,9 @@ get a shell, so lets write the following assembly code:
 ```
 
 This assembly code tells us to spawn a shell using the `std` library function
-`execve()`. The details of `execve()` can be viewd with `man 2 execve()`. More
+`execve()`. The details of `execve()` can be viewed with `man 2 execve()`. More
 precisely, this assembly tells the system to execute the `/bin/sh` program. We
-conpile the shellcode with:
+compile the shellcode with:
 
 ```c
 ~/ccom4086/> gcc -m64 -c -o shellcode.o shellcode.S
@@ -473,7 +473,7 @@ ccom4086
 
 It worked!
 
-This example has been relatively simple and artificail. In actual practice,
+This example has been relatively simple and artificial. In actual practice,
 programs are compiled with added protections to make these kinds of hard to
 implement. Here we disabled them just to see how the exploit works, but a keen
 developer or security engineer will not give you the chance to learn how an
@@ -485,7 +485,7 @@ We have illustrated how buffer overflows work, and why they are dangerous. It is
 important to keep them in mind and mitigate them. AN intimate knowledge with
 assembly language, and with `gdb` will help with that, as much as they help with
 building exploits. This section was inspired by, and uses modified code from the
-article following article on stack smashing: [Smashin The Stack In The 21st
+article following article on stack smashing: [Smashing The Stack In The 21st
 Century](https://thesquareplanet.com/blog/smashing-the-stack-21st-century/).All
 credit should be given to the [author of the
 article.](https://thesquareplanet.com/blog/smashing-the-stack-21st-century/)

@@ -190,12 +190,40 @@ sets up the memory to call the `main()` function while
 returns the memory to how it was before the prologue was called. Notice how the
 function epilogue effectively inverses the function prologue.
 
+If we take an object dump of a typical binary, we get output like:
+
+```bash
+00000000000010c0 <__do_global_dtors_aux>:
+    10c0:       f3 0f 1e fa             endbr64
+    10c4:       80 3d 5d 2f 00 00 00    cmpb   $0x0,0x2f5d(%rip)        # 4028 <__TMC_END__>
+    10cb:       75 33                   jne    1100 <__do_global_dtors_aux+0x40>
+    10cd:       55                      push   %rbp
+    10ce:       48 83 3d 22 2f 00 00    cmpq   $0x0,0x2f22(%rip)        # 3ff8 <__cxa_finalize@GLIBC_2.2.5>
+```
+
+Here we see that there are instructions with added suffixes. These are size
+designations that indicate the size of the variables the operations are working
+with. For example `cmpb` compares a byte, and `cmpq` compares a _quad_ (defined
+in the next section). These are default in AT&T syntax, and are omitted in
+Intel syntax. Typically, these suffixes can be ignored until you care about the
+size of the operands. Below is a table for each suffix.
+
+|`C` declaration     |   Data type          |     Assembly suffix     |   Size| 
+|:---                |   :---:              |     :---:               |   ---:|
+|`char`              |   Byte               |     `b`                 |    `1`|
+|`short`             |   Word               |     `w`                 |    `2`|
+|`int`               |   Double Word        |     `l`                 |    `4`|
+|`long`              |   Quad Word          |     `q`                 |    `8`|
+|`char*`             |   Quad Word          |     `q`                 |    `8`|
+|`float`             |   Single Precision   |     `s`                 |    `4`|
+|`double`            |   Double Precision   |     `l`                 |    `8`|
+
 ## Words, DWORDS, and QWORDS .
 
 Integer data types, like in `C` are stored in `4` bytes in assembly. In this
 instance, we say that the `int` data type is one "word" in memory. The basic
 unit of data is a `byte`, and assembly organizes these data units in `4` byte
-units called **words**. We call a **halfowrd** something that is `2` bytes in
+units called **words**. We call a **halfword** something that is `2` bytes in
 size, hence the name, and data presented in `8` bytes is called a **giant**, so
 `double`s in `C` are stored in giants in assembly code.
 

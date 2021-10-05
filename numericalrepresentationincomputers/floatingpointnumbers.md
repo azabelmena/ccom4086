@@ -9,9 +9,9 @@ $$
 \sum_{i=1}^k{b_i \cdot 2^i}
 $$
 
-We add a **binary point** after the digit represented by $$2^0$$, and
-fractional powers of $$2$$ are represented afte this point. We we get that the
-binary number `1011.101` can be represented as:
+We add a **binary point** after the digit represented by $$2^0$$, and fractional
+powers of $$2$$ are represented after this point. We we get that the binary
+number `1011.101` can be represented as:
 
 $$
 1011.101_2=2^3+2+1+\frac{1}{2}+\frac{1}{2^3}=\frac{23}{4}_{10}
@@ -20,7 +20,7 @@ $$
 ![](../.gitbook/assets/2021-08-26_14-17.png)
 
 Much how we divide by $$2$$ to convert base $$10$$ to binary, for numbers after
-the decimal point, we multiply by $$2$$. Now a computer cannot compute infnite
+the decimal point, we multiply by $$2$$. Now a computer cannot compute infinite
 sums, however, we notice that numbers of the form `.1111...1....` are just below
 `1.0`, which serves as the largest fractional value that a computer can encode.
 
@@ -32,18 +32,19 @@ numbers have repeating bit representations; for example:
 * `1/5 = 0.0011001100110[0011]...`
 
 The other limitation is that just setting the binary point within the `w` bits
-limits the range of values. How can we represent ver small or very large values?
+limits the range of values. How can we represent very small or very large
+values?
 
 ## The IEEE Floating Point Standard.
 
 In 1985, the Institute of Electrical and Electronics Engineers \(the IEEE\)
-established a standard for floating point representations of nuumbers in what is
+established a standard for floating point representations of numbers in what is
 now called the [**IEEE standard
 754**](https://www.geeksforgeeks.org/ieee-standard-754-floating-point-numbers/).
-The most recent version was published in 2019. The age of this standar also
+The most recent version was published in 2019. The age of this standard also
 means that it has been adopted by all major CPUs.
 
-The IEEE 754 was driven by numerical concerns, and aimed to set nice stndards
+The IEEE 754 was driven by numerical concerns, and aimed to set nice standards
 for rounding floating point numbers, and how to manage underflow and overflow.
 A drawback is that it is hard to make fast in hardware.
 
@@ -84,7 +85,7 @@ Extended precision is supported only by Intel.
 
 Given the following floating point integer `float f = 15213.0`, we see that
 `15213 = 11101101101110` is an integer value, but we do not have to store it as
-an interger. However, this integer does not fit in the established
+an integer. However, this integer does not fit in the established
 representation for floating point numbers. For this, we can **normalize** the
 mantissa to be between `1.0` and `2.0`. In accordance, we would then express
 this as: `15213 = 1.1101101101110e13`. This is similar to scientific notation
@@ -120,7 +121,7 @@ Special values for floating point numbers include the following cases:
 
   This case can happen when operations overflow, or when a division by `0` is
 
-  performed. It inlcudes both positive and negative infinity.
+  erformed. It includes both positive and negative infinity.
 
 * `exp = 111...1` and `frac =/= 000...0`. This case is represented as the values
 
@@ -140,11 +141,11 @@ Special values for floating point numbers include the following cases:
 
 ## Properties of Floating Point Numbers.
 
-From now on we will assume that all floating poits conform to the IEEE 758
+From now on we will assume that all floating points conform to the IEEE 758
 standard \(unless specified\).
 
 Notice that if we display various floating point values, and study the
-distribution of normailize, denormalized, and infinite values, that the
+distribution of normalized, denormalized, and infinite values, that the
 distribution gets denser towards `0`.
 
 ![](../.gitbook/assets/2021-09-09_18-09.png)
@@ -159,7 +160,7 @@ This allows us to \(almost\) use `unsigned` integer comparison.
 
 ## Rounding, Addition, and Multiplication of Floating Points.
 
-We define to operations of addition and multplication of floating point numbers
+We define to operations of addition and multiplication of floating point numbers
 as follows: Given two floating point numbers $$x$$ and $$y$$ and a **rounding**
 function $$\text{Round}$$, then:
 
@@ -183,7 +184,7 @@ finally round to the nearest even value.
 The default rounding mode is usually to round to the nearest even value,
 usually because it is hard to round to any other value without dropping into the
 assembly code; another reason is that all other rounding methods are
-statistially biased: the sum of the set of positive numbers will constantly be
+statistically biased: the sum of the set of positive numbers will constantly be
 over or under estimated.
 
 In the case that we are "halfway"between two possible values, the standard
@@ -206,7 +207,7 @@ in which case we we have the following options to "fix" the value:
 * if $$E$$ is out of range, overflow the value.
 * Round $$M$$ to fit the precision of `frac`.
 
-The biggest hurdle in implemnting this is multiplying the mantisse.
+The biggest hurdle in implementing this is multiplying the mantisse.
 
 ### Floating Point Addition.
 
@@ -227,8 +228,8 @@ and multiplication of integer numbers, floating point addition and
 multiplication do not form a group. In fact, both operations fail in
 associativity and with additive inverse; we have to not that infinities and
 `NaN`s have no inverses. Monotonicity also fails for floating point numbers for
-the same reasons inverses fail. Furhtermore, floating point multiplication does
-not distribute over flaoting point addition, due to overflow and rounding
+the same reasons inverses fail. Furthermore, floating point multiplication does
+not distribute over floating point addition, due to overflow and rounding
 errors.
 
 ## Floating Point in C.
@@ -237,15 +238,15 @@ As what can be gleaned on from before, floating point numbers in `C` have two
 possible types. The `float` type declares a single precision floating point
 number while the `double` type declares double precision floating point numbers.
 Casting between `int`, `double` and `float` changes the bit representation of
-the variable. Most notabally, when `double`s or `float`s are cast to `int`s, the
+the variable. Most notably, when `double`s or `float`s are cast to `int`s, the
 fractional part of the variable gets **truncated** to `0`. However, this
 conversion is not defined when out of range. Another case is when the
-`float`/`double` is a `NaN`, or out of range, then it is usualy cast to
+`float`/`double` is a `NaN`, or out of range, then it is usually cast to
 $$-2^w$$.
 
 When casting an `int` to `double`, the exact bit representation is preserved as
-long as the `int` has a wordsize of less that $$53$$ bits. When casting `int` to
-`float`, the integer will be rounded according to the rounding mode.
+long as the `int` has a word size of less that $$53$$ bits. When casting `int`
+to `float`, the integer will be rounded according to the rounding mode.
 
 In certain operations involving an `float`/`double` and an `int`, automatic
 casting will be made. In the case of `int` operated with `int`, the resultant is

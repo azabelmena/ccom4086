@@ -1,9 +1,6 @@
----
-description: >-
-  Here we describe two diffenet encodings for bits to represent integers. One
-  represents unsigned, positive only values of integers, the other represents
-  signed, positive and negative values of integers
----
+-- description: >- Here we describe two different encodings for bits to
+represent integers. One represents unsigned, positive only values of integers,
+the other represents signed, positive and negative values of integers ---
 
 # Integers.
 
@@ -12,7 +9,7 @@ description: >-
 Machines represent integers in two ways. The first is **unsigned** \(denoted
 `unsigned` in `C`\), in which the machine reads the bits as is and assigns them
 a nonnegative integer value. Machines can also represent **signed** integers
-\(deonoted `signed` in `C`\), in where the bits have been encoded to account for
+\(denoted `signed` in `C`\), in where the bits have been encoded to account for
 negative values as well.
 
 Below are the encoding schemes for encoding unsigned integers represented by
@@ -47,7 +44,7 @@ $$
 0 \leq B2U \leq 2^{w}-1
 $$
 
-We call the minumum and maximum values of unsigned integers $$UMIN$$ and
+We call the minimum and maximum values of unsigned integers $$UMIN$$ and
 $$UMAX$$ respectively.
 
 ### Signed Integers.
@@ -122,7 +119,7 @@ visualize this with the following figure.
 
 ![Conversion of two&apos;s complement signed to unsigned inverts the ordering, and maps small values to large ones and vice versa.](../.gitbook/assets/2021-08-20_17-05.png)
 
-## Signed vs. Unsinged numbers in C/C++
+## Signed vs. Unsigned numbers in C/C++
 
 In `C/C++`, integer literals are assumed, by default to be signed. To declare
 an unsigned integers, simply append a `u` to the assignment; for example `int
@@ -139,16 +136,16 @@ tx = ux;
 uy = ty;
 ```
 
-Initializing `ux` to `tx` will \(implicitly\) cast `ux` as a `signed int`,
-while assinging `ty` to `uy` will cast `ty` as an `unsigned int`. While `C/C++`
+Initializing `ux` to `tx` will \(implicitly\) cast `ux` as a `signed int`, while
+assigning `ty` to `uy` will cast `ty` as an `unsigned int`. While `C/C++`
 supports this kind of casting, this practice can lead to problems in readability
 of the code, which is essential for debugging.
 
-When printing integers with `printf()`, using the directives `%d`,`%u`, and
-`%x` will display the given integers as a signed decimal, an usigned decimal,
-and in hexidecimal respectively. However, it is also possible to print an `int`
-with `%u` and an `unsigned int` with `%d`. `C` does not use any type information
-with these directives.
+When printing integers with `printf()`, using the directives `%d`,`%u`, and `%x`
+will display the given integers as a signed decimal, an unsigned decimal, and in
+hexadecimal respectively. However, it is also possible to print an `int` with
+`%u` and an `unsigned int` with `%d`. `C` does not use any type information with
+these directives.
 
 The use of signed and unsigned numbers in `C/C++` isn't just only in
 interpretation, and in displaying, it also can be used with evaluation and
@@ -198,7 +195,7 @@ vector to be a $$w+k$$ bit integer, without changing the value.
 
 We can also perform a sign extension when dealing with `signed int`s, in where
 we append the sign bit $$k$$ times to the most significant bit. The procedure is
-the same as above, exepct instead of zeros, we append the sign bit \(the most
+the same as above, except instead of zeros, we append the sign bit \(the most
 significant bit\), which is either `1` or `0`.
 
 ![](../.gitbook/assets/2021-08-20_17-06_1.png)
@@ -209,9 +206,9 @@ type, say, a `32` bit `int`, to a larger data type, such as a `64` bit `int`.
 ### Truncation.
 
 Given a bit vector $$x=(x_0, \dots, x_w)$$ We can **truncate** it by dropping
-the most significant `w-k` bits in the vector. More formally, given the a bit
-vector $$x$$ \( as descibed above\). Truncating $$x$$ to $$k$$ bits gives a bit
-vector of length $$w-k$$ of the form: $$x'=(x_0, \dots, x_{k-1})$$
+the most significant `w-k` bits in the vector. More formally, given a bit vector
+$$x$$ \( as described above\). Truncating $$x$$ to $$k$$ bits gives a bit vector
+of length $$w-k$$ of the form: $$x'=(x_0, \dots, x_{k-1})$$
 
 If we let $$y = B2U(x)$$ and $$y' = B2U(x')$$, then we get
 
@@ -232,16 +229,16 @@ equivalent to taking the integer mod $$2^k$$. For `signed ints`s, it is similar.
 
 ## Arithmetic.
 
-Given that there are ranges for signed and unsigned integers, operations such
-as addition and multiplication, and shifting can produce unexepected values. For
+Given that there are ranges for signed and unsigned integers, operations such as
+addition and multiplication, and shifting can produce unexpected values. For
 example, we may add two $$w$$ bit integers and get a $$w+1$$ bit integer \(try
 adding `1111` to itself\), this produces something called **overflow**, in where
 the value wraps around the range. This gives the arithmetic upon these kinds of
 numbers a modular nature.
 
-S imilarly, the multiplication of $$2$$ $$w$$ bit numbers can result in a $$2w$$
-bit number \(multipy the previous example by itself\). This goes for both signed
-and unsigned integers.
+Similarly, the multiplication of $$2$$ $$w$$ bit numbers can result in a $$2w$$
+bit number \(multiply the previous example by itself\). This goes for both
+signed and unsigned integers.
 
 ### Shift operations.
 
@@ -263,7 +260,7 @@ x >> k = \lfloor \frac{u}{2^k} \rfloor
 $$
 
 For signed values, and since the floor always rounds down, if $$x<0$$, we can
-get a wrong value, in this case, it would be good to get the cieling, in this
+get a wrong value, in this case, it would be good to get the ceiling, in this
 case we just compute
 
 $$
@@ -280,12 +277,12 @@ multiplication is treated in the same way, with the modular product instead.
 
 ![](../.gitbook/assets/2021-08-20_17-07.png)
 
-For unsinged integers, there is really only one way for the value to overflow.
+For unsigned integers, there is really only one way for the value to overflow.
 This cannot be said for unsigned integers.
 
 ### Signed arithmetic.
 
-For signed integer values, the range goes from a negative value to a postive
+For signed integer values, the range goes from a negative value to a positive
 value, hence there are two ways for addition and multiplication to overflow, the
 first is where it overflows towards the upperbound, which results in a wrap
 around to a negative number, we call this **positive overflow** \(since it
