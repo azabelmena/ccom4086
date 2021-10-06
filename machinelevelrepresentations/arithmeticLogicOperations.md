@@ -86,29 +86,31 @@ variants however is the `leaq` instruction.
 The istruction classes are divided into four groups, the _load effective
 address_ instruction, unary and binary instructions, and _shift_ instructions.
 
-|Instruction            |       Effect          |              Description|
-|:---                   |       :---:           |                     ---:|
-|`leaq S, D`            |       `D = &S`        |   Load Effective Address|
-|`inc D`                |       `D += 1`        |   Increment             |
-|`dec D`                |       `D -= 1`        |   Decrement             |
-|`not D`                |       `D = ~D`        |   Negate                |
-|`add S, D`             |       `D = D+S`       |   Add                   |
-|`sub S, D`             |       `D = D-S`       |   Subtract              |
-|`imul S, D`            |       `D = D*S`       |   Multiply              |
-|`xor S, D`             |       `D = D^S`       |   Exclusive Or          |
-|`or S, D`              |       `D = D\|S`      |   Or                    |
-|`and S, D`             |       `D = D&S`       |   And                   |
-|`sal k, D`             |       `D =  << k`     |   Left Shift            |
-|`shl k, D`             |       `D =  << k`     |   Left Shift            |
-|`sar k, D`             |       `D =  >> k`     |   Arithmetic Right Shift|
-|`shl k, D`             |       `D =  >> k`     |   Logical Right Shift   |
+|Instruction            |       Effect              |              Description|
+|:---                   |       :---:               |                     ---:|
+|`leaq S, D`            |       `D = &S`            |   Load Effective Address|
+|`inc D`                |       `D += 1`            |   Increment             |
+|`dec D`                |       `D -= 1`            |   Decrement             |
+|`not D`                |       `D = ~D`            |   Negate                |
+|`add S, D`             |       `D = D+S`           |   Add                   |
+|`sub S, D`             |       `D = D-S`           |   Subtract              |
+|`imul S, D`            |       `D = D*S`           |   Multiply              |
+|`xor S, D`             |       `D = D^S`           |   Exclusive Or          |
+|`or S, D`              |<code>D = D &#124; S</code>|   Or                    |
+|`and S, D`             |       `D = D&S`           |   And                   |
+|`sal k, D`             |       `D =  << k`         |   Left Shift            |
+|`shl k, D`             |       `D =  << k`         |   Left Shift            |
+|`sar k, D`             |       `D =  >> k`         |   Arithmetic Right Shift|
+|`shl k, D`             |       `D =  >> k`         |   Logical Right Shift   |
+|-----------------------|---------------------------|-------------------------|
 
 ## The `leaq` Instruction.
 
 The **load effective address** instruction, `leaq` is a variation of `movq`. It
 reads from memory into a register, with the exception that it does not reference
 memory at all. Instead of reading from the designated location, it copies the
-effective address into the destination operand; hence the name.
+effective address into the destination operand; hence the name. Additionally,
+the destination operand of `leaq` must be a register.
 
 `leaq` can be used to generate pointers for memory reference, and it can be used
 to describe arithmetic operations. For example, if `rdx` contains 
