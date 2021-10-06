@@ -96,7 +96,7 @@ address_ instruction, unary and binary instructions, and _shift_ instructions.
 |`sub S, D`             |       `D = D-S`       |   Subtract              |
 |`imul S, D`            |       `D = D*S`       |   Multiply              |
 |`xor S, D`             |       `D = D^S`       |   Exclusive Or          |
-|`or S, D`              |       `D = D|S`       |   Or                    |
+|`or S, D`              |       `D = D\|S`      |   Or                    |
 |`and S, D`             |       `D = D&S`       |   And                   |
 |`sal k, D`             |       `D =  << k`     |   Left Shift            |
 |`shl k, D`             |       `D =  << k`     |   Left Shift            |
