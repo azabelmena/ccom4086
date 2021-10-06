@@ -346,6 +346,35 @@ movl        $-1,                    %eax    //%rax = 0x00000000ffffffff.
 movq        $-1,                    %rax    //%rax = 0xffffffffffffffff.
 ```
 
+As an example, consider the following `C` code and its assembly translation.
+
+```c
+long exchange(long* xp, long y){
+    long x = *xp;
+    *xp = y;
+    
+    return x;
+}
+```
+
+```c
+exchange:
+    movq    (%rdi),     %rax
+    movq    %rsi,       (%rdi)
+    ret
+```
+
+When `exchange()` begins execution, `xp` and `y` are stroed in `rdi` and `rsi`,
+then `x` is read and stores it in `rax`, this corresponds to storing the address
+at `xp` into `x`. Then  `y` is copied into `xp`. The function then returns. Thus
+the `mov` instruction can be used to read from memory and store it in
+a register, and to write from a register to memory.
+
+Also notice that pointers are just memory addresses, dereferencing entails
+copying an address into a register, and then using the register in a memory
+reference. Additionally, local variables are stored into registers, which are
+much faster to access than memory.
+
 ## Memory Segmentation.
 
 Before we can even consider doing anything with assembly, or even analyzing it,
