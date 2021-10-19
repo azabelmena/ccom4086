@@ -253,7 +253,3 @@ applications of `64` bit addition. This value should be stored at `rax`, and the
 bits of `rdx` should either be all `0` (unsigned) or the sign bit of `rax`
 (signed). The `cqto` instruction can perform the latter. This instruction takes
 no operands, and just reads the sign bit from `rax` and copies it to `rdx`.
-
-``` 
-This is a test commit!
-```

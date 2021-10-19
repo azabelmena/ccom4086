@@ -13,7 +13,7 @@ description: >-
 
 In a computer system, numerical information is encoded in **binary digits**, or
 **bits**. Bits are encoded as 0 or 1; hence, one can view a computer as working
-over the finite field of two elements $$\mathbb{F}_2$$ \(addition and
+over the finite field of two elements $\mathbb{F}_2$ \(addition and
 multiplication are defined a little differently\). By encoding bits in various
 ways, computers determine what instructions to execute and represent numbers in
 different bases, strings of characters, etc, and manipulate them.
