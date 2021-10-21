@@ -71,6 +71,8 @@ a table describing the `cmp` and `test` instruction classes.
 |`testl`                |                           |   Test Double Word.      |
 |`testq`                |                           |   Test Quad Word.        |
 
+### Accessing Condition Codes.
+
 <!--```c-->
 <!--int greaterThan(long x, long y){-->
     <!--return x > y;-->
