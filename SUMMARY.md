@@ -12,3 +12,4 @@
     
   * [Arithmetic And Logical Operations in Assembly.](machinelevelrepresentations/arithmeticLogicOperations.md)
 * [Control Flow.](machinelevelrepresentations/control.md)
+* [Procedures.](machinelevelrepresentations/procedures.md)

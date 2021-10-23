@@ -1,11 +1,11 @@
 long absdiff(long x, long y){
     long result;
 
-    if(x>y){
-        result = x-y;
+    if(x < y){
+        result = y-x;
     }
     else{
-        result = y-x;
+        result = x-y;
     }
 
     return result;
@@ -29,4 +29,16 @@ Done:
 
 long absdiffSwitch(long x, long y){
     return (x>y) ? x-y : y-x;
+}
+
+long absdiffcmov(long x, long y){
+    long rval = y-x;
+    long eval = x-y;
+    long test = (x >= y);
+
+    if(test){
+        rval = eval;
+    }
+
+    return rval;
 }

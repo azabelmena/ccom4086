@@ -5,14 +5,12 @@
 absdiff:
 .LFB0:
 	.cfi_startproc
-	cmpq	%rsi, %rdi
-	jle	.L2
+	movq	%rsi, %rdx
+	subq	%rdi, %rdx
 	movq	%rdi, %rax
 	subq	%rsi, %rax
-	ret
-.L2:
-	movq	%rsi, %rax
-	subq	%rdi, %rax
+	cmpq	%rsi, %rdi
+	cmovl	%rdx, %rax
 	ret
 	.cfi_endproc
 .LFE0:
@@ -22,16 +20,15 @@ absdiff:
 absdiffGoto:
 .LFB1:
 	.cfi_startproc
-	cmpq	%rsi, %rdi
-	jle	.L5
-	movq	%rdi, %rax
-	subq	%rsi, %rax
-	ret
-.L5:
+	movq	%rdi, %rdx
+	subq	%rsi, %rdx
 	movq	%rsi, %rax
 	subq	%rdi, %rax
-.L6:
+	cmpq	%rsi, %rdi
+	cmovg	%rdx, %rax
 	ret
+.L5:
+.L6:
 	.cfi_endproc
 .LFE1:
 	.size	absdiffGoto, .-absdiffGoto
@@ -40,17 +37,30 @@ absdiffGoto:
 absdiffSwitch:
 .LFB2:
 	.cfi_startproc
-	cmpq	%rsi, %rdi
-	jle	.L8
-	movq	%rdi, %rax
-	subq	%rsi, %rax
-	ret
-.L8:
+	movq	%rdi, %rdx
+	subq	%rsi, %rdx
 	movq	%rsi, %rax
 	subq	%rdi, %rax
+	cmpq	%rsi, %rdi
+	cmovg	%rdx, %rax
 	ret
 	.cfi_endproc
 .LFE2:
 	.size	absdiffSwitch, .-absdiffSwitch
+	.globl	absdiffcmov
+	.type	absdiffcmov, @function
+absdiffcmov:
+.LFB3:
+	.cfi_startproc
+	movq	%rsi, %rdx
+	subq	%rdi, %rdx
+	movq	%rdi, %rax
+	subq	%rsi, %rax
+	cmpq	%rdi, %rsi
+	cmovg	%rdx, %rax
+	ret
+	.cfi_endproc
+.LFE3:
+	.size	absdiffcmov, .-absdiffcmov
 	.ident	"GCC: (GNU) 11.1.0"
 	.section	.note.GNU-stack,"",@progbits
