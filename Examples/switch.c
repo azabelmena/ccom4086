@@ -1,4 +1,4 @@
-void switchEg(long x, long n, long *dest){
+long switchEg(long x, long n, long *dest){
 
     long val = x;
 
@@ -26,5 +26,5 @@ void switchEg(long x, long n, long *dest){
 
     *dest = val;
 
-    return;
+    return val;
 }

@@ -1,3 +1,5 @@
+#define WSIZE 8*sizeof(int)
+
 long pccountDo(unsigned long x){
     long result = 0;
 
@@ -44,6 +46,18 @@ loop:
 test:
     if(x){
         goto loop;
+    }
+
+    return result;
+}
+
+long pcountFor(unsigned long x){
+    long result = 0;
+
+    for(int i = 0; i < WSIZE ; i++){
+        unsigned bit = (x >> i) & 0x1;
+
+        result += bit;
     }
 
     return result;
