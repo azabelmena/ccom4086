@@ -9,7 +9,8 @@
   * [More on Assembly.](machinelevelrepresentations/moreonassembly.md)
   * [The GNU Debugger \(gdb\).](machinelevelrepresentations/thegnudebugger/README.md)
     * [Buffer Overflows.](machinelevelrepresentations/thegnudebugger/bufferoverflows.md)
-    
+
   * [Arithmetic And Logical Operations in Assembly.](machinelevelrepresentations/arithmeticLogicOperations.md)
 * [Control Flow.](machinelevelrepresentations/control.md)
 * [Procedures.](machinelevelrepresentations/procedures.md)
+* [Array Allocation and Deallocatiob.](machinelevelrepresentations/arrayAllocationAndAccess.md)
