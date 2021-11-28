@@ -13,4 +13,5 @@
   * [Arithmetic And Logical Operations in Assembly.](machinelevelrepresentations/arithmeticLogicOperations.md)
 * [Control Flow.](machinelevelrepresentations/control.md)
 * [Procedures.](machinelevelrepresentations/procedures.md)
-* [Array Allocation and Deallocatiob.](machinelevelrepresentations/arrayAllocationAndAccess.md)
+* [Array Allocation and Deallocation.](machinelevelrepresentations/arrayAllocationAndAccess.md)
+* [Heterogeneous Data Structures.](machinelevelrepresentations/heteroGeneousDataStructures.md)
