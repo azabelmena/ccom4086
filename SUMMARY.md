@@ -11,7 +11,7 @@
     * [Buffer Overflows.](machinelevelrepresentations/thegnudebugger/bufferoverflows.md)
 
   * [Arithmetic And Logical Operations in Assembly.](machinelevelrepresentations/arithmeticLogicOperations.md)
-* [Control Flow.](machinelevelrepresentations/control.md)
-* [Procedures.](machinelevelrepresentations/procedures.md)
-* [Array Allocation and Deallocation.](machinelevelrepresentations/arrayAllocationAndAccess.md)
-* [Heterogeneous Data Structures.](machinelevelrepresentations/heteroGeneousDataStructures.md)
+  * [Control Flow.](machinelevelrepresentations/control.md)
+  * [Procedures.](machinelevelrepresentations/procedures.md)
+  * [Array Allocation and Deallocation.](machinelevelrepresentations/arrayAllocationAndAccess.md)
+* [The `Y76_64` Instruction Set Architecture.](processor_architecture/isa.md)
