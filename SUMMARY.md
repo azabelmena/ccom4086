@@ -14,4 +14,5 @@
   * [Control Flow.](machinelevelrepresentations/control.md)
   * [Procedures.](machinelevelrepresentations/procedures.md)
   * [Array Allocation and Deallocation.](machinelevelrepresentations/arrayAllocationAndAccess.md)
-* [The `Y76_64` Instruction Set Architecture.](processor_architecture/isa.md)
+* [Processor Architecture.](processor_architecture/README.md)
+  * [The `Y76_64` Instruction Set Architecture.](processor_architecture/isa.md)
