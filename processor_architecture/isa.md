@@ -193,9 +193,169 @@ program.
 
 ## `Y86_64` Exceptions.
 
+The `Stat` code has four possible values, whose names and meanings are shown
+below:
+
 |Value      |       Name        |                       Meaning |
 |:---       |   :---:           |                          ---: |
 |`1`        |   `AOK`           |   Normal Operation.           |
 |`2`        |   `HLT`           |   `halt` encountered.         |
 |`3`        |   `ADR`           |   Invalid address.            |
 |`4`        |   `INS`           |   Invalid instruction.        |
+
+Of the four values, the only one that indicates normal program execution is the
+`AOK` code, while the other three denote some kind of exception. Specifically,
+the `HLT` code indicates that the `halt` insstruction was encountered while the
+`ADR` and `INS` codes indicate that the program attepmpted to read from, or
+write to an invalid address, or that an invalid struction was found,
+respectively. Usually, the address space is limited to a maximum value, and any
+attempt to access memory from beyond that limit triggers the `ADR` exception.
+
+In `Y86_64`, when these exceptions are encountered, the processor just stops
+executing instructions. In more complete designs, the processor continues
+executing, invoking an **exception handler** when an exception is encountered.
+The exception handler is simply a procedure designated to handle a specific
+exception.
+
+## `Y86_64` Programs.
+
+Consider the following code:
+
+```c
+long sum(long *start, long count){
+    long sum = 0;
+
+    while(count){
+        sum += *start;
+
+        start++;
+        count--;
+    }
+
+    return sum;
+}
+```
+
+We can compile this with `gcc -Og -S -o sum.s sum.c` to produce the following
+`x86_64` assembly code:
+
+```c
+sum:
+	movl	$0,     %eax    // sum = 0
+	jmp	    .L9             // goto test.
+.L10:
+	addq	(%rdi), %rax    // add *start to sum.
+	addq	$8,     %rdi    // increment *start.
+	subq	$1,     %rsi    // decrement start.
+.L9:
+	testq	%rsi,   %rsi    // test sum.
+	jne	    .L10            // if != 0, goto loop.
+	ret
+```
+
+The assembly code in `Y86_64` is similar, albeit different:
+
+```c
+sum:
+    irmovq  $8,         %r8     // Constant 8.
+    irmovq  $1,         %r9     // Constant 1.
+    xorq    %rax,       %rax    // sum = 0.
+    andq    %rsi,       %rsi    // set condition code.
+    jmp     test                // goto test.
+
+loop:
+    mrmovq  (%rdi),     %r10    // get *start
+    addq    %r10,       %rax    // add *start to sum.
+    addq    %r8,        %rdi    // increment start.
+    subq    %r9,        %rsi    // decrement count.
+
+test:
+    jne     loop                // stop when 0.
+    ret
+```
+
+One immediately notices that the `Y86_64` program is easier to read than its
+`x86_64` counterpart. We also make the following two observations:
+- The `Y6_64` code requires two instructions to read a value from memory, and
+  to add it to a register, where as the `x86_64` ISA can do this in a single
+  `addq` instruction.
+- The `Y86_64` instruction takes advantage that `subq` also sets the condition
+  code, and so the `testq` instruction from the `x86_64` program is not
+  required. However, the `Y86_64` program must set the condition code prior to
+  entering to loop, and with an `andq` instruction. We can view a more complete
+  `Y86_64` program using the above `sum` procedure below:
+
+```c
+    .pos    0x0                 # Begin program at address 0x0.
+    irmovq  stack, %rsp         # Set up the stack pointer.
+    call    main                # Execute the program.
+    halt                        # Exit wit success.
+
+# Array of 4 elements.
+    .align  8
+array:
+    .quad   0x000d000d000d
+    .quad   0x00c000c000c0
+    .quad   0x0b000b000b00
+    .quad   0xa000a000a000
+
+main:
+    irmovq  array,      %rdi
+    irmovq  $4,         %rsi
+    call    sum                 # sum(array, 4).
+    ret
+
+sum:
+    irmovq  $8,         %r8     # Constant 8.
+    irmovq  $1,         %r9     # Constant 1.
+    xorq    %rax,       %rax    # sum = 0.
+    andq    %rsi,       %rsi    # set condition code.
+    jmp     test                # goto test.
+
+loop:
+    mrmovq  (%rdi),     %r10    # get *start
+    addq    %r10,       %rax    # add *start to sum.
+    addq    %r8,        %rdi    # increment start.
+    subq    %r9,        %rsi    # decrement count.
+
+test:
+    jne     loop                # stop when 0.
+    ret
+
+    .pos    0x200               # Begin the stack at address 0x200.
+stack:
+```
+
+Here, this program contains both data and instructions. Directives tell the
+assembler where to place code and data and how to align it. These directives
+are called **assembler directives** and are preappended by a `.` prefix. Also
+notice that the program specifies issues such as stack placement, data/program
+initialization, and termination. Also notice that we have to manually specify
+where the stack starts, in this case in address `0x200`, so we most be careful
+where we start the stack so that it does not grow too large. We allocate an
+array, which is simply just a procedure which holds an `.align` directive,
+and it aligns the array on an `8` byte boundry to allocate four integers.
+
+Since the only tool in this case is an assembler, the tasks normally delegated
+to the compiler and the linker must be performed. One example was specifying
+where our stack started. One can start to appreciate why compilers were
+designed to handle these tasks.
+
+## Further Details.
+
+Most of the `Y86_64` instructions transform the state in a rather
+straightforward fashion, so describing the effect of each instruction is not
+dificult, acutally it is not dificult defining them either. There are, however
+two instruction combinations that become the exeception. Just like in `x86`,
+the `pushq` instruction substracts `8` from `rsp` and writes a register value
+to memory, so it is not clear what the processor should do with the instruction
+`pushq %rsp`. The register being pushed is also the one being changed by the
+instruction. We can make two conventions then:
+- Push the original value of `rsp`.
+- Push the decremented value of `rsp`.
+for `Y86_64`, we just adopt the same convention used by `x86_64`.
+
+The other ambiguity arises with the `popq` instruction. Again, the processro
+does not know what to do with the instruction `popq %rsp`. It could set `rsp`
+to the value from memory, or to the incremented stack pointer. Again, we just
+have the `Y86_64` ISA follow the same convention as the `x86_64` ISA.

@@ -3,7 +3,7 @@
 long plus(long, long);
 
 void sumstore(long x, long y, long *dest){
-    
+
     long t = plus(x,y);
     *dest = t;
 
@@ -22,4 +22,17 @@ int main(int argc, char* argv[]){
 
 long plus(long x, long y){
     return x+y;
+}
+
+long sum(long *start, long count){
+    long sum = 0;
+
+    while(count){
+        sum += *start;
+
+        start++;
+        count--;
+    }
+
+    return sum;
 }

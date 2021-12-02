@@ -1,0 +1,78 @@
+	.file	"sum.c"
+	.text
+	.globl	plus
+	.type	plus, @function
+plus:
+.LFB13:
+	.cfi_startproc
+	leaq	(%rdi,%rsi), %rax
+	ret
+	.cfi_endproc
+.LFE13:
+	.size	plus, .-plus
+	.globl	sumstore
+	.type	sumstore, @function
+sumstore:
+.LFB11:
+	.cfi_startproc
+	pushq	%rbx
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
+	movq	%rdx, %rbx
+	call	plus
+	movq	%rax, (%rbx)
+	popq	%rbx
+	.cfi_def_cfa_offset 8
+	ret
+	.cfi_endproc
+.LFE11:
+	.size	sumstore, .-sumstore
+	.globl	main
+	.type	main, @function
+main:
+.LFB12:
+	.cfi_startproc
+	subq	$24, %rsp
+	.cfi_def_cfa_offset 32
+	movq	%fs:40, %rax
+	movq	%rax, 8(%rsp)
+	xorl	%eax, %eax
+	movq	$4382, (%rsp)
+	movq	%rsp, %rdx
+	movl	$1, %esi
+	movl	$4382, %edi
+	call	sumstore
+	movq	8(%rsp), %rax
+	subq	%fs:40, %rax
+	jne	.L7
+	movl	$0, %eax
+	addq	$24, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 8
+	ret
+.L7:
+	.cfi_restore_state
+	call	__stack_chk_fail@PLT
+	.cfi_endproc
+.LFE12:
+	.size	main, .-main
+	.globl	sum
+	.type	sum, @function
+sum:
+.LFB14:
+	.cfi_startproc
+	movl	$0, %eax
+	jmp	.L9
+.L10:
+	addq	(%rdi), %rax
+	addq	$8, %rdi
+	subq	$1, %rsi
+.L9:
+	testq	%rsi, %rsi
+	jne	.L10
+	ret
+	.cfi_endproc
+.LFE14:
+	.size	sum, .-sum
+	.ident	"GCC: (GNU) 11.1.0"
+	.section	.note.GNU-stack,"",@progbits
