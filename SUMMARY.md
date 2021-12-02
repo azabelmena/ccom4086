@@ -15,4 +15,4 @@
   * [Procedures.](machinelevelrepresentations/procedures.md)
   * [Array Allocation and Deallocation.](machinelevelrepresentations/arrayAllocationAndAccess.md)
 * [Processor Architecture.](processor_architecture/README.md)
-  * [The `Y76_64` Instruction Set Architecture.](processor_architecture/isa.md)
+  * [The `Y86_64` Instruction Set Architecture.](processor_architecture/isa.md)
