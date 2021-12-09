@@ -31,3 +31,8 @@ seperating, designing and testinc control logic, one can create a working
 microporcessor with.
 
 ## Logic Gates.
+
+Logic gates are the basic computing elements for digital circuits, much like
+how prime numbers are the basic elements for building numbers. A logic gate
+takes boolean value inputs and output boolean values. Hence, they can be viewed
+as a function on boolean values; indeed, thats how they can be described.
